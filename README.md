@@ -112,7 +112,7 @@ If you use this work, please cite the manuscript (in preparation) and this repos
 
 > Rastogi, H. *et al.* (2026). *Which open-data surrogates reproduce expert biodiversity
 > assessment? A pre-registered multi-catchment validation in northern Australia.* Manuscript in
-> preparation. Code and data: <this repository>.
+> preparation. Code and data: https://github.com/harshrastogii/biodiversity-surrogate-validation.
 
 *(Author list, DOI, and journal to be finalised.)*
 

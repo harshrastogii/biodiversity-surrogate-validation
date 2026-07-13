@@ -10,8 +10,8 @@ authors:
     given-names: Harsh
     affiliation: Charles Darwin University
   # Additional co-authors to be completed before publication.
-repository-code: "https://github.com/<github-username>/nt-biodiversity-surrogate-validation"
-url: "https://github.com/<github-username>/nt-biodiversity-surrogate-validation"
+repository-code: "https://github.com/harshrastogii/biodiversity-surrogate-validation"
+url: "https://github.com/harshrastogii/biodiversity-surrogate-validation"
 keywords:
   - biodiversity surrogates
   - conservation planning
