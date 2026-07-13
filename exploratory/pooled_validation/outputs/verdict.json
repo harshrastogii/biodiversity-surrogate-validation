@@ -1,0 +1,86 @@
+{
+  "primary_rule": "mean",
+  "seed": 42,
+  "pool": [
+    "Roper",
+    "Larrimah",
+    "Wadeye"
+  ],
+  "pooled_n": 270,
+  "pooled_n_eff": 76.7,
+  "parity": {
+    "roper_n": 244,
+    "roper_exposure_rho": 0.2401,
+    "roper_moran_exposure": 0.761,
+    "roper_moran_biorisk": 0.406,
+    "roper_n_eff": 59.8
+  },
+  "meta": {
+    "exposure_full": {
+      "rho": 0.2714,
+      "ci_lo": 0.0354,
+      "ci_hi": 0.4788,
+      "p": 0.0247,
+      "I2": 0.0,
+      "p_Q": 0.5643
+    },
+    "convertibility": {
+      "rho": 0.028,
+      "ci_lo": -0.5092,
+      "ci_hi": 0.5495,
+      "p": 0.9259,
+      "I2": 58.0,
+      "p_Q": 0.0924
+    },
+    "significance": {
+      "rho": 0.0787,
+      "ci_lo": -0.1187,
+      "ci_hi": 0.2702,
+      "p": 0.4353,
+      "I2": 0.0,
+      "p_Q": 0.3876
+    },
+    "sig_landsys": {
+      "rho": 0.1008,
+      "ci_lo": -0.1001,
+      "ci_hi": 0.2937,
+      "p": 0.3255,
+      "I2": 0.0,
+      "p_Q": 0.421
+    },
+    "exposure_SOCSremoved": {
+      "rho": 0.2732,
+      "ci_lo": 0.0364,
+      "ci_hi": 0.4811,
+      "p": 0.0243,
+      "I2": 0.0,
+      "p_Q": 0.5666
+    },
+    "protection": {
+      "rho": NaN,
+      "ci_lo": NaN,
+      "ci_hi": NaN,
+      "p": NaN,
+      "I2": 0.0,
+      "p_Q": NaN
+    }
+  },
+  "weddell": {
+    "exposure_full": {
+      "rho": 0.3364,
+      "n": 11
+    },
+    "convertibility": {
+      "rho": -0.7818,
+      "n": 11
+    },
+    "significance": {
+      "rho": 0.8364,
+      "n": 11
+    },
+    "sig_landsys": {
+      "rho": 0.9636,
+      "n": 11
+    }
+  }
+}

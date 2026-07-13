@@ -1,0 +1,5 @@
+surface,n,spearman,n_eff,ci_lo,ci_hi
+exposure_full,11,0.3364,4.9,-0.806,0.9484
+convertibility,11,-0.7818,3.0,,
+significance,11,0.8364,3.0,,
+sig_landsys,11,0.9636,3.0,,

@@ -1,0 +1,66 @@
+POOLED MULTI-CATCHMENT VALIDATION — pre-registered (PREREGISTRATION.md)
+primary rule='mean'  seed=42  pool=['Roper', 'Larrimah', 'Wadeye']  (Weddell separate)
+
+==========================================================================
+0. PARITY CHECK vs frozen Roper pipeline  [OBSERVATION]
+==========================================================================
+  Roper: n=244 (expect 244), exposure rho=+0.240 (expect +0.240)
+         Moran I exposure=+0.761 (expect +0.761), BIORISK=+0.406 (expect +0.406), n_eff=60 (expect ~60)
+
+==========================================================================
+1. PER-CATCHMENT  [OBSERVATION + per-catchment statistical evidence]
+==========================================================================
+  (per-catchment n<20 individually UNINTERPRETABLE; shown for transparency only)
+  Roper (n=244, n_eff=60):
+      exposure_full        rho=+0.240  95%CI[-0.019,+0.469]
+      convertibility       rho=+0.177  95%CI[-0.086,+0.418]
+      significance         rho=+0.038  95%CI[-0.169,+0.243]
+      sig_landsys          rho=+0.062  95%CI[-0.150,+0.269]
+  Larrimah (n=18, n_eff=9):
+      exposure_full        rho=+0.629  95%CI[-0.145,+0.925]
+      convertibility       rho=+0.441  95%CI[-0.333,+0.860]
+      significance         rho=+0.569  95%CI[-0.205,+0.905]
+      sig_landsys          rho=+0.569  95%CI[-0.205,+0.905]
+  Wadeye (n=8, n_eff=8):
+      exposure_full        rho=+0.191  95%CI[-0.599,+0.792]
+      convertibility       rho=-0.698  95%CI[-0.951,+0.114]
+      significance         rho=+0.191  95%CI[-0.599,+0.792]
+      sig_landsys          rho=+0.191  95%CI[-0.599,+0.792]
+
+==========================================================================
+2. CONFIRMATORY: random-effects meta-analysis over 3 catchments  [STATISTICAL EVIDENCE]
+==========================================================================
+  pooled n=270 hexes, pooled effective n=77
+  surface                pooled_rho               95% CI        p    I2%     p_Q
+  exposure_full              +0.271  [+0.035,+0.479]    0.0247    0.0  0.5643
+  convertibility             +0.028  [-0.509,+0.549]    0.9259   58.0  0.0924
+  significance               +0.079  [-0.119,+0.270]    0.4353    0.0  0.3876
+  sig_landsys                +0.101  [-0.100,+0.294]    0.3255    0.0  0.4210
+  exposure_SOCSremoved       +0.273  [+0.036,+0.481]    0.0243    0.0  0.5666
+  protection                   +nan  [+nan,+nan]       nan    0.0     nan
+
+==========================================================================
+3. HETEROGENEITY (Cochran Q / I2)  [STATISTICAL EVIDENCE + caveat]
+==========================================================================
+  exposure_full        Q=1.14 df=2 p_Q=0.5643 I2=0.0%  (k=3 -> very low power; non-sig Q does NOT prove homogeneity)
+  convertibility       Q=4.76 df=2 p_Q=0.0924 I2=58.0%  (k=3 -> very low power; non-sig Q does NOT prove homogeneity)
+  significance         Q=1.90 df=2 p_Q=0.3876 I2=0.0%  (k=3 -> very low power; non-sig Q does NOT prove homogeneity)
+  sig_landsys          Q=1.73 df=2 p_Q=0.4210 I2=0.0%  (k=3 -> very low power; non-sig Q does NOT prove homogeneity)
+
+==========================================================================
+4. EXPLORATORY: naive vs within-catchment pooled Spearman  [EXPLORATORY]
+==========================================================================
+  exposure_full          naive_pooled=+0.306   within_catchment=+0.421
+  convertibility         naive_pooled=+0.162   within_catchment=+0.374
+  significance           naive_pooled=+0.159   within_catchment=+0.278
+  sig_landsys            naive_pooled=+0.179   within_catchment=+0.298
+  exposure_SOCSremoved   naive_pooled=+0.307   within_catchment=+0.422
+  protection             naive_pooled=+0.003   within_catchment=+0.356
+
+==========================================================================
+5. WEDDELL ROBUSTNESS (BioValues scale; Spearman crosswalk-invariant)  [EXPLORATORY]
+==========================================================================
+  exposure_full        rho=+0.336 (n=11, n_eff=5) 95%CI[-0.806,+0.948]
+  convertibility       rho=-0.782 (n=11, n_eff=3) 95%CI[+nan,+nan]
+  significance         rho=+0.836 (n=11, n_eff=3) 95%CI[+nan,+nan]
+  sig_landsys          rho=+0.964 (n=11, n_eff=3) 95%CI[+nan,+nan]

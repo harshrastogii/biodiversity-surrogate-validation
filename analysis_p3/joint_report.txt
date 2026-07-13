@@ -1,0 +1,32 @@
+P3 JOINT MULTIVARIATE MODEL — final confirmatory (spatially cross-validated)
+Out-of-sample Spearman(pred, expert BIORISK). Guards vs overfitting via block CV + LOCO.
+
+SPATIAL-BLOCK CV (hold out catchment x 10km tiles):
+  model            est     test_rho           95% CI  train overfit_gap
+  CORE_joint       E-AREA    +0.172 [-0.01,+0.32]  +0.20      +0.026
+  FULL_joint       E-AREA    +0.123 [-0.06,+0.29]  +0.13      +0.007
+  cond_dea         E-AREA    +0.062 [-0.11,+0.22]  +0.06      -0.007
+  convertibility   E-AREA    +0.022 [-0.15,+0.16]  +0.09      +0.065
+  protection       E-AREA    +0.022 [-0.19,+0.20]  +0.18      +0.163
+  sig_landsys      E-AREA    +0.116 [-0.03,+0.26]  +0.22      +0.105
+  sig_nvis_mvg     E-AREA    +0.019 [-0.19,+0.26]  +0.25      +0.233
+  CORE_joint       E-UNIT    +0.218 [+0.08,+0.33]  +0.30      +0.083
+  FULL_joint       E-UNIT    +0.196 [+0.05,+0.31]  +0.28      +0.084
+  cond_dea         E-UNIT    +0.017 [-0.10,+0.13]  +0.04      +0.018
+  convertibility   E-UNIT    +0.061 [-0.11,+0.23]  +0.20      +0.137
+  protection       E-UNIT    -0.156 [-0.21,-0.00]  +0.02      +0.179
+  sig_landsys      E-UNIT    +0.066 [-0.04,+0.15]  +0.12      +0.058
+  sig_nvis_mvg     E-UNIT    +0.127 [+0.05,+0.26]  +0.22      +0.092
+
+INCREMENTAL VALUE of combining (joint - best single), E-UNIT, block-bootstrap CI:
+  CORE_joint   vs best single (sig_nvis_mvg): Δrho=+0.074 [-0.109,+0.226]  -> inconclusive
+  FULL_joint   vs best single (sig_nvis_mvg): Δrho=+0.055 [-0.128,+0.199]  -> inconclusive
+
+LEAVE-ONE-CATCHMENT-OUT transfer (predict a held-out landscape), E-UNIT Spearman:
+  held-out    CORE_joint  NVIS-only  conv-only
+  Roper           +0.161     +0.242     +0.236
+  Larrimah        +0.137     +0.064     +0.177
+  Wadeye          +0.536     +0.511        n/a
+  GunnPoint       +0.281     +0.216     +0.197
+  DeepWell        +0.239     +0.000     +0.120
+  MEAN            +0.271     +0.207     +0.182

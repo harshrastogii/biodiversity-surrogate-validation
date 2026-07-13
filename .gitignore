@@ -1,0 +1,21 @@
+# --- Version 2 repository ignore rules ---
+
+# Downloaded raw source data (large; reproducible from the documented public sources —
+# see data/meta/P0_DATA_MANIFEST.md). Not redistributed here.
+data/raw/
+
+# Transient API-response dumps captured during data discovery (cache, not research artefacts)
+data/meta/*.json
+
+# Python caches / compiled
+__pycache__/
+*.pyc
+*.pyo
+
+# OS / editor cruft
+.DS_Store
+*.swp
+
+# Scratch / temporary
+*.tmp
+/tmp/

@@ -1,0 +1,338 @@
+{
+  "meta_10km": [
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.085,
+      "ci_lo": -0.003,
+      "ci_hi": 0.172,
+      "p": 0.0582,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.28,
+      "ci_lo": 0.161,
+      "ci_hi": 0.39,
+      "p": 0.0,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.244,
+      "ci_lo": 0.149,
+      "ci_hi": 0.334,
+      "p": 0.0,
+      "I2": 18.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.348,
+      "ci_lo": -0.29,
+      "ci_hi": 0.772,
+      "p": 0.2818,
+      "I2": 91.0,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.141,
+      "ci_lo": -0.098,
+      "ci_hi": 0.364,
+      "p": 0.2464,
+      "I2": 83.0,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.044,
+      "ci_lo": -0.166,
+      "ci_hi": 0.079,
+      "p": 0.4795,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.178,
+      "ci_lo": 0.063,
+      "ci_hi": 0.288,
+      "p": 0.0026,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.174,
+      "ci_lo": 0.041,
+      "ci_hi": 0.301,
+      "p": 0.0104,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-UNIT",
+      "pooled_rho": -0.015,
+      "ci_lo": -0.073,
+      "ci_hi": 0.043,
+      "p": 0.6149,
+      "I2": 0.0,
+      "k": 2
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.228,
+      "ci_lo": -0.489,
+      "ci_hi": 0.07,
+      "p": 0.1318,
+      "I2": 14.0,
+      "k": 2
+    }
+  ],
+  "meta_5km": [
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.084,
+      "ci_lo": 0.001,
+      "ci_hi": 0.166,
+      "p": 0.0483,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.287,
+      "ci_lo": 0.185,
+      "ci_hi": 0.383,
+      "p": 0.0,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.27,
+      "ci_lo": 0.144,
+      "ci_hi": 0.387,
+      "p": 0.0,
+      "I2": 54.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.339,
+      "ci_lo": -0.301,
+      "ci_hi": 0.769,
+      "p": 0.2971,
+      "I2": 92.0,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.139,
+      "ci_lo": -0.1,
+      "ci_hi": 0.364,
+      "p": 0.254,
+      "I2": 86.0,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.045,
+      "ci_lo": -0.162,
+      "ci_hi": 0.074,
+      "p": 0.4603,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.17,
+      "ci_lo": 0.079,
+      "ci_hi": 0.259,
+      "p": 0.0003,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.153,
+      "ci_lo": 0.012,
+      "ci_hi": 0.288,
+      "p": 0.0335,
+      "I2": 1.0,
+      "k": 4
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-UNIT",
+      "pooled_rho": -0.015,
+      "ci_lo": -0.071,
+      "ci_hi": 0.041,
+      "p": 0.6031,
+      "I2": 0.0,
+      "k": 2
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.215,
+      "ci_lo": -0.449,
+      "ci_hi": 0.047,
+      "p": 0.1066,
+      "I2": 8.0,
+      "k": 2
+    }
+  ],
+  "meta_20km": [
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.071,
+      "ci_lo": -0.034,
+      "ci_hi": 0.175,
+      "p": 0.1866,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.281,
+      "ci_lo": 0.163,
+      "ci_hi": 0.39,
+      "p": 0.0,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.259,
+      "ci_lo": 0.147,
+      "ci_hi": 0.364,
+      "p": 0.0,
+      "I2": 17.0,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.34,
+      "ci_lo": -0.287,
+      "ci_hi": 0.762,
+      "p": 0.2851,
+      "I2": 90.0,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.144,
+      "ci_lo": -0.106,
+      "ci_hi": 0.376,
+      "p": 0.2588,
+      "I2": 82.0,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.042,
+      "ci_lo": -0.167,
+      "ci_hi": 0.085,
+      "p": 0.5213,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.186,
+      "ci_lo": 0.05,
+      "ci_hi": 0.315,
+      "p": 0.0074,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.173,
+      "ci_lo": 0.032,
+      "ci_hi": 0.308,
+      "p": 0.0162,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-UNIT",
+      "pooled_rho": -0.015,
+      "ci_lo": -0.084,
+      "ci_hi": 0.054,
+      "p": 0.6726,
+      "I2": 0.0,
+      "k": 2
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.212,
+      "ci_lo": -0.439,
+      "ci_hi": 0.041,
+      "p": 0.0998,
+      "I2": 7.0,
+      "k": 2
+    }
+  ],
+  "circularity_partial_pooled": {
+    "rho": 0.19961460357955146,
+    "lo": 0.07923930102231867,
+    "hi": 0.314252104779183,
+    "p": 0.0012549122164551285,
+    "I2": 69.52581141644758,
+    "k": 3
+  },
+  "circularity_per_catchment": [
+    {
+      "catchment": "Roper",
+      "partial": 0.181
+    },
+    {
+      "catchment": "Larrimah",
+      "partial": 0.051
+    },
+    {
+      "catchment": "Wadeye",
+      "partial": 0.451
+    },
+    {
+      "catchment": "GunnPoint",
+      "partial": 0.124
+    },
+    {
+      "catchment": "DeepWell",
+      "partial": NaN
+    }
+  ]
+}

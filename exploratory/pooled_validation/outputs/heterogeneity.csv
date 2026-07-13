@@ -1,0 +1,5 @@
+surface,Q,df,p_Q,I2,tau2,note
+exposure_full,1.144,2,0.5643,0.0,0.0,k=3 -> very low power; non-sig Q does NOT prove homogeneity
+convertibility,4.762,2,0.0924,58.0,0.1599,k=3 -> very low power; non-sig Q does NOT prove homogeneity
+significance,1.895,2,0.3876,0.0,0.0,k=3 -> very low power; non-sig Q does NOT prove homogeneity
+sig_landsys,1.73,2,0.421,0.0,0.0,k=3 -> very low power; non-sig Q does NOT prove homogeneity

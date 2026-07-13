@@ -1,0 +1,126 @@
+{
+  "meta": [
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.0712,
+      "ci_lo": -0.0202,
+      "ci_hi": 0.1615,
+      "p": 0.1267,
+      "I2": 80.1,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_landsys",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.2943,
+      "ci_lo": 0.2317,
+      "ci_hi": 0.3545,
+      "p": 0.0,
+      "I2": 63.4,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.2649,
+      "ci_lo": 0.1853,
+      "ci_hi": 0.341,
+      "p": 0.0,
+      "I2": 80.7,
+      "k": 4
+    },
+    {
+      "surrogate": "sig_nvis_mvg",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.2816,
+      "ci_lo": -0.44,
+      "ci_hi": 0.7822,
+      "p": 0.4564,
+      "I2": 99.8,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.1452,
+      "ci_lo": -0.1687,
+      "ci_hi": 0.4323,
+      "p": 0.3653,
+      "I2": 98.4,
+      "k": 4
+    },
+    {
+      "surrogate": "cond_dea",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.0357,
+      "ci_lo": -0.0644,
+      "ci_hi": -0.0068,
+      "p": 0.0154,
+      "I2": 0.0,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-UNIT",
+      "pooled_rho": 0.198,
+      "ci_lo": 0.1477,
+      "ci_hi": 0.2473,
+      "p": 0.0,
+      "I2": 43.3,
+      "k": 4
+    },
+    {
+      "surrogate": "convertibility",
+      "estimand": "E-AREA",
+      "pooled_rho": 0.0594,
+      "ci_lo": -0.171,
+      "ci_hi": 0.2836,
+      "p": 0.6158,
+      "I2": 97.1,
+      "k": 4
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-UNIT",
+      "pooled_rho": -0.0172,
+      "ci_lo": -0.0459,
+      "ci_hi": 0.0116,
+      "p": 0.2426,
+      "I2": 0.0,
+      "k": 2
+    },
+    {
+      "surrogate": "protection",
+      "estimand": "E-AREA",
+      "pooled_rho": -0.3961,
+      "ci_lo": -0.713,
+      "ci_hi": 0.0551,
+      "p": 0.0833,
+      "I2": 99.6,
+      "k": 2
+    }
+  ],
+  "nvis_partial_pooled": {
+    "rho": 0.20055699694737306,
+    "lo": 0.11228825016305141,
+    "hi": 0.2856853875543568,
+    "p": 1.078254482633767e-05,
+    "I2": 83.72896774839637,
+    "k": 4
+  },
+  "weddell": {
+    "sig_landsys": -0.095,
+    "sig_nvis_mvg": 0.228,
+    "cond_dea": -0.033,
+    "convertibility": 0.189,
+    "protection": 0.076
+  },
+  "verdicts": {
+    "sig_landsys": "ESTIMAND-DEPENDENT (area + / per-unit not)",
+    "sig_nvis_mvg": "ESTIMAND-DEPENDENT (per-unit + / area not)",
+    "cond_dea": "MIXED/weak",
+    "convertibility": "ESTIMAND-DEPENDENT (per-unit + / area not)",
+    "protection": "NOT VALIDATED (both null)"
+  }
+}

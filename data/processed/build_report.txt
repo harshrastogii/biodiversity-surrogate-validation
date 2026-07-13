@@ -1,0 +1,35 @@
+V2 HARMONIZATION BUILD (pure data; no statistics)
+CRS=3577  resolutions=[1000, 2000, 5000, 10000]  + polygon anchor
+
+Roper      res=polygon  units= 6342  cov>=50%= 6342  bio[1.00,5.00]  sig_landsys NaN=0  conv NaN=1769
+Roper      res=1000     units=17573  cov>=50%=17262  bio[1.01,5.00]  sig_landsys NaN=0  conv NaN=670
+Roper      res=2000     units= 4495  cov>=50%= 4291  bio[1.57,5.00]  sig_landsys NaN=0  conv NaN=62
+Roper      res=5000     units=  753  cov>=50%=  692  bio[2.49,5.00]  sig_landsys NaN=0  conv NaN=0
+Roper      res=10000    units=  205  cov>=50%=  172  bio[2.95,3.89]  sig_landsys NaN=0  conv NaN=0
+Larrimah   res=polygon  units=   19  cov>=50%=   19  bio[3.00,4.00]  sig_landsys NaN=0  conv NaN=1
+Larrimah   res=1000     units=  593  cov>=50%=  480  bio[3.00,4.00]  sig_landsys NaN=0  conv NaN=2
+Larrimah   res=2000     units=  174  cov>=50%=  119  bio[3.00,3.98]  sig_landsys NaN=0  conv NaN=0
+Larrimah   res=5000     units=   40  cov>=50%=   21  bio[3.00,3.47]  sig_landsys NaN=0  conv NaN=0
+Larrimah   res=10000    units=   15  cov>=50%=    3  bio[3.00,3.42]  sig_landsys NaN=0  conv NaN=0
+Wadeye     res=polygon  units=  412  cov>=50%=  412  bio[2.00,5.00]  sig_landsys NaN=5  conv NaN=182
+Wadeye     res=1000     units=  230  cov>=50%=  180  bio[2.00,5.00]  sig_landsys NaN=0  conv NaN=5
+Wadeye     res=2000     units=   69  cov>=50%=   44  bio[2.00,5.00]  sig_landsys NaN=0  conv NaN=0
+Wadeye     res=5000     units=   17  cov>=50%=    7  bio[2.16,4.72]  sig_landsys NaN=0  conv NaN=0
+Wadeye     res=10000    units=    7  cov>=50%=    2  bio[2.52,4.66]  sig_landsys NaN=0  conv NaN=0
+GunnPoint  res=polygon  units=23315  cov>=50%=23315  bio[1.00,5.00]  sig_landsys NaN=79  conv NaN=3532
+GunnPoint  res=1000     units=  797  cov>=50%=  712  bio[1.00,5.00]  sig_landsys NaN=0  conv NaN=139
+GunnPoint  res=2000     units=  218  cov>=50%=  177  bio[1.37,4.85]  sig_landsys NaN=0  conv NaN=24
+GunnPoint  res=5000     units=   42  cov>=50%=   27  bio[2.48,4.52]  sig_landsys NaN=0  conv NaN=4
+GunnPoint  res=10000    units=   15  cov>=50%=    8  bio[2.62,4.13]  sig_landsys NaN=0  conv NaN=3
+DeepWell   res=polygon  units=    6  cov>=50%=    6  bio[2.00,4.00]  sig_landsys NaN=0  conv NaN=0
+DeepWell   res=1000     units=   37  cov>=50%=   22  bio[2.00,4.00]  sig_landsys NaN=0  conv NaN=0
+DeepWell   res=2000     units=   14  cov>=50%=    5  bio[2.28,3.85]  sig_landsys NaN=0  conv NaN=0
+DeepWell   res=5000     units=    6  cov>=50%=    1  bio[2.95,3.89]  sig_landsys NaN=0  conv NaN=0
+DeepWell   res=10000    units=    4  cov>=50%=    0  bio[2.96,3.19]  sig_landsys NaN=0  conv NaN=0
+Weddell    res=polygon  units=20481  cov>=50%=20481  bio[1.00,5.00]  sig_landsys NaN=44  conv NaN=2069
+Weddell    res=1000     units=  473  cov>=50%=  401  bio[1.00,4.41]  sig_landsys NaN=1  conv NaN=33
+Weddell    res=2000     units=  143  cov>=50%=   94  bio[1.00,4.41]  sig_landsys NaN=0  conv NaN=1
+Weddell    res=5000     units=   29  cov>=50%=   15  bio[1.24,3.58]  sig_landsys NaN=0  conv NaN=0
+Weddell    res=10000    units=   13  cov>=50%=    3  bio[2.23,3.44]  sig_landsys NaN=0  conv NaN=0
+
+grid rows=25962  polygon rows=50575  elapsed=537s

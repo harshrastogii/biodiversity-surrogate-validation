@@ -1,0 +1,41 @@
+P3 CONFIRMATORY — surrogate validation (pre-registered P3.PR1/PR2)
+Unit=native expert polygon; co-primary E-UNIT/E-AREA; spatial-corrected n_eff; DL meta.
+
+PER-CATCHMENT n_eff (spatial correction shrinks polygon counts drastically):
+  Roper      n_poly~  6342  n_eff~1988
+  Larrimah   n_poly~    19  n_eff~19
+  Wadeye     n_poly~   407  n_eff~116
+  GunnPoint  n_poly~ 23236  n_eff~2635
+  DeepWell   n_poly~     6  n_eff~3
+
+META-ANALYSIS (pooled over 5 BIORISK catchments), both estimands:
+  surrogate        estimand     rho             95% CI       p    I2  verdict
+  sig_landsys      E-UNIT    +0.071 [-0.020,+0.162]  0.1267    80  ESTIMAND-DEPENDENT (area + / per-unit not)
+  sig_landsys      E-AREA    +0.294 [+0.232,+0.354]  0.0000    63  
+  sig_nvis_mvg     E-UNIT    +0.265 [+0.185,+0.341]  0.0000    81  ESTIMAND-DEPENDENT (per-unit + / area not)
+  sig_nvis_mvg     E-AREA    +0.282 [-0.440,+0.782]  0.4564   100  
+  cond_dea         E-UNIT    +0.145 [-0.169,+0.432]  0.3653    98  MIXED/weak
+  cond_dea         E-AREA    -0.036 [-0.064,-0.007]  0.0154     0  
+  convertibility   E-UNIT    +0.198 [+0.148,+0.247]  0.0000    43  ESTIMAND-DEPENDENT (per-unit + / area not)
+  convertibility   E-AREA    +0.059 [-0.171,+0.284]  0.6158    97  
+  protection       E-UNIT    -0.017 [-0.046,+0.012]  0.2426     0  NOT VALIDATED (both null)
+  protection       E-AREA    -0.396 [-0.713,+0.055]  0.0833   100  
+
+E-AREA LEVERAGE GUARDRAIL (drop largest 5% polygons) — per catchment rho_area / rho_area_lev:
+  Roper      land:+0.24/+0.13  mvg:-0.17/+0.21  dea:-0.05/+0.11  conv:+0.18/-0.02  prot:-0.18/+0.03
+  Larrimah   land:+0.52/+0.10  mvg:-0.36/+0.32  dea:+0.22/+0.79  conv:-0.26/+0.46
+  Wadeye     land:+0.40/+0.33  mvg:+0.61/+0.66  dea:-0.08/-0.02  conv:+0.27/+0.16
+  GunnPoint  land:+0.31/+0.16  mvg:+0.74/+0.21  dea:-0.03/+0.03  conv:-0.12/+0.17  prot:-0.58/+0.04
+  DeepWell   land:+0.81/+nan  mvg:-0.60/+nan  dea:-0.42/+nan  conv:+0.68/+nan
+
+NVIS VEGETATION-CIRCULARITY CONTROL (PR2.6) — challenges the NVIS positive:
+  catchment      raw  partial|LS,conv  3v4-only
+  Roper        0.242            0.181     0.149
+  Larrimah     0.064            0.051     0.064
+  Wadeye       0.511            0.451       nan
+  GunnPoint    0.206            0.124      0.42
+  DeepWell    -0.254              nan       nan
+  POOLED partial NVIS|(LS,conv): rho=+0.201 [+0.112,+0.286] p=0.0000  (k=4)
+
+WEDDELL (separate BioValues scheme, E-UNIT Spearman):
+  sig_landsys=-0.095  sig_nvis_mvg=0.228  cond_dea=-0.033  convertibility=0.189  protection=0.076

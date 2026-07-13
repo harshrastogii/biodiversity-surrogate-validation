@@ -1,0 +1,16 @@
+catchment,n,surface,moran_I_surface,moran_I_biorisk,spearman,block_ci_lo,block_ci_hi,n_eff
+Roper,244,exposure_full,0.761,0.406,0.2401,0.0512,0.4279,59.8
+Roper,244,convertibility,0.758,0.406,0.1773,0.0228,0.3716,58.2
+Roper,244,significance,0.556,0.406,0.0385,-0.2271,0.2692,90.7
+Roper,244,sig_landsys,0.669,0.406,0.0618,-0.2165,0.3023,87.6
+Roper,244,exposure_SOCSremoved,0.764,0.406,0.242,0.0468,0.4369,59.3
+Larrimah,18,exposure_full,0.656,0.335,0.6287,-0.094,0.8402,8.9
+Larrimah,18,convertibility,0.475,0.335,0.4405,-0.1563,0.7376,9.3
+Larrimah,18,significance,0.564,0.335,0.569,0.1603,0.8803,9.1
+Larrimah,18,sig_landsys,0.564,0.335,0.569,0.1603,0.8847,9.1
+Larrimah,18,exposure_SOCSremoved,0.656,0.335,0.6287,-0.1012,0.8402,8.9
+Wadeye,8,exposure_full,0.086,-0.054,0.1905,-0.8,1.0,8.0
+Wadeye,8,convertibility,0.055,-0.054,-0.6976,-1.0,0.0,8.0
+Wadeye,8,significance,0.085,-0.054,0.1905,-0.8,1.0,8.0
+Wadeye,8,sig_landsys,0.085,-0.054,0.1905,-0.8,1.0,8.0
+Wadeye,8,exposure_SOCSremoved,0.086,-0.054,0.1905,-0.8,1.0,8.0

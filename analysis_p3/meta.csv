@@ -1,0 +1,11 @@
+surrogate,estimand,pooled_rho,ci_lo,ci_hi,p,I2,k
+sig_landsys,E-UNIT,0.0712,-0.0202,0.1615,0.1267,80.1,4
+sig_landsys,E-AREA,0.2943,0.2317,0.3545,0.0,63.4,4
+sig_nvis_mvg,E-UNIT,0.2649,0.1853,0.341,0.0,80.7,4
+sig_nvis_mvg,E-AREA,0.2816,-0.44,0.7822,0.4564,99.8,4
+cond_dea,E-UNIT,0.1452,-0.1687,0.4323,0.3653,98.4,4
+cond_dea,E-AREA,-0.0357,-0.0644,-0.0068,0.0154,0.0,4
+convertibility,E-UNIT,0.198,0.1477,0.2473,0.0,43.3,4
+convertibility,E-AREA,0.0594,-0.171,0.2836,0.6158,97.1,4
+protection,E-UNIT,-0.0172,-0.0459,0.0116,0.2426,0.0,2
+protection,E-AREA,-0.3961,-0.713,0.0551,0.0833,99.6,2
