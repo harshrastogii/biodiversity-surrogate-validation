@@ -1,68 +1,71 @@
 # Which open-data surrogates reproduce expert biodiversity assessment? A pre-registered multi-catchment validation in northern Australia
 
-**Authors:** [to be completed] 
-**Target journal:** *Diversity and Distributions* (Biodiversity Research / Methods)
+**Running title:** Validating open-data biodiversity surrogates
+
+**Authors:** Harsh Rastogi
+
+**Affiliations:** Charles Darwin University, Casuarina, Northern Territory, Australia
+
+**Corresponding author:** Harsh Rastogi, Charles Darwin University, Casuarina, Northern Territory, Australia. Email: harsh.rastogi@students.cdu.edu.au
+
+**ORCID:** Harsh Rastogi, https://orcid.org/0009-0004-9452-0206
 
 ---
 
 ## Abstract
 
-**Aim.** Conservation planning in data-poor jurisdictions routinely substitutes open-access
-spatial surrogates for direct biodiversity information, yet whether these surrogates reproduce
-expert biodiversity judgement is seldom tested, and rarely against the analytical choices — spatial
-unit, weighting, and scale — that can determine the answer. We ask which open-data surrogate best
-reproduces independent expert biodiversity assessment, whether combining surrogates helps or
-transfers to unsurveyed landscapes, and how robust the answers are to those choices.
+**Aim.** Conservation planning in data-poor regions substitutes open-access surrogates for direct
+biodiversity data, yet whether they reproduce expert judgement is seldom tested — and rarely against
+the analytical choices (unit, weighting, scale) that can determine the answer. We ask which surrogate
+best reproduces independent expert assessment, whether combining surrogates helps or transfers to
+unsurveyed landscapes, and how robust the answers are.
 
 **Location.** Northern Territory, Australia (six expert-assessed areas).
 
-**Methods.** Using independent expert biodiversity assessments for six areas — five sharing an
-identical ordinal biodiversity-risk scale (*BIORISK*, 1–5) and one (Greater Weddell) on a related
-scheme analysed separately — as the benchmark, we validated five open-access surrogates —
-land-system rarity, vegetation-type (NVIS) rarity, remotely-sensed vegetation cover (DEA Fractional
-Cover), agricultural convertibility, and formal protection — at the native expert-polygon unit. The analysis was
-pre-registered with two co-primary estimands (per-unit and per-area). Inference used a spatial
-block bootstrap and random-effects meta-analysis; the leading surrogate was subjected to a
-circularity control; and a joint multivariate model was evaluated out-of-sample by spatial-block
-cross-validation and leave-one-catchment-out transfer.
+**Methods.** Using expert assessments for six areas — five on an identical ordinal biodiversity-risk
+scale (*BIORISK*, 1–5), one (Greater Weddell) on a related scheme analysed separately — we validated
+five open-access surrogates (land-system rarity, vegetation-type (NVIS) rarity, vegetation cover (DEA
+Fractional Cover), convertibility, protection) at the native expert-polygon unit. Pre-registered, it
+used two co-primary estimands (per-unit, per-area), a spatial block bootstrap with random-effects
+meta-analysis, a circularity control for the leading surrogate, and a joint model evaluated
+out-of-sample (spatial-block cross-validation; leave-one-catchment-out transfer).
 
-**Results.** The commonly-used land-system-rarity surrogate did not reproduce expert value at the
-per-unit level (pooled ρ = 0.085, 95% CI −0.003 to 0.172). Vegetation-type (NVIS) rarity showed the
-strongest per-unit agreement (ρ = 0.244, 0.149–0.334) and retained an independent association after
-controlling for land-system rarity and convertibility (partial ρ = 0.200, 0.079–0.314).
-Agricultural convertibility was the only surrogate positive under both estimands; remotely-sensed
-cover and protection carried no value signal. Which significance surrogate appeared to work depended
-on the estimand — land-system rarity only under area-weighting, NVIS only per unit.
-A joint model achieved only modest out-of-sample agreement (Spearman ≈ 0.22–0.27) and, although it
-transferred positively to every held-out catchment, did not significantly outperform the single
-best surrogate (incremental ρ = 0.074, −0.109 to 0.226).
+**Results.** Land-system rarity did not reproduce expert value per unit (ρ = 0.085, 95% CI −0.003 to
+0.172). Vegetation-type (NVIS) rarity showed the strongest per-unit agreement (ρ = 0.244,
+0.149–0.334), retaining an independent association after controlling for land-system rarity and
+convertibility (partial ρ = 0.200, 0.079–0.314). Convertibility was the only surrogate positive under
+both estimands; cover and protection carried no value signal. Which surrogate worked was
+estimand-dependent — land-system rarity only per area, NVIS only per unit. A joint model reached only
+modest out-of-sample agreement (ρ ≈ 0.22–0.27) and, though it transferred positively to every
+held-out catchment, did not significantly beat the best single surrogate (incremental ρ = 0.074,
+−0.109 to 0.226).
 
-**Main conclusions.** Open-data surrogates function as weak first-pass screens, not
-biodiversity-value maps. At the level of expert-delineated units a vegetation-type surrogate
-modestly outperforms the widely-used landform-rarity surrogate, but which surrogate appears best
-depends on the analysis unit, weighting and scale — a caution for a large body of surrogate-based
-planning.
+**Main conclusions.** Open-data surrogates are weak first-pass screens, not biodiversity-value maps.
+At the expert-unit level a vegetation-type surrogate modestly outperforms the widely-used
+landform-rarity surrogate, but the best surrogate depends on analysis unit, weighting and scale — a
+caution for much surrogate-based planning.
 
-**Keywords:** biodiversity surrogates; conservation planning; open data; expert assessment;
-validation; modifiable areal unit problem; spatial cross-validation; northern Australia
+**Keywords:** biodiversity surrogates; conservation planning; expert assessment; modifiable areal unit problem; northern Australia; open data; spatial cross-validation; validation
 
 ---
 
 ## 1. Introduction
 
 Spatial estimates of where biodiversity value is concentrated underpin systematic conservation
-planning, but across much of the world's land surface — including most of northern Australia — the
-species inventories, fine-scale vegetation mapping and expert assessment that such estimates ideally
-draw on do not exist at the resolution planning requires. The pragmatic response has been to build
-priority layers from whatever open, wall-to-wall spatial data are available — land-system and
-landform maps, vegetation classifications, land-use and tenure layers, remote sensing — as
-surrogates for the biodiversity information that direct survey would provide.
+planning (Margules & Pressey, 2000), but across much of the world's land surface — including most of
+northern Australia — the species inventories, fine-scale vegetation mapping and expert assessment
+that such estimates ideally draw on do not exist at the resolution planning requires. The pragmatic
+response has been to build priority layers from whatever open, wall-to-wall spatial data are
+available — land-system and landform maps, vegetation classifications, land-use and tenure layers,
+remote sensing — as surrogates for the biodiversity information that direct survey would provide
+(Rodrigues & Brooks, 2007).
 
 Two assumptions underlie this practice, and both are rarely tested. The first is that a chosen
 surrogate actually reproduces the biodiversity priorities that expert assessment would assign. The
 second, more subtle, is that the answer to the first does not depend on arbitrary analytical
 choices — the spatial unit of analysis, whether units are weighted by area, and the grain at which
-the comparison is made. Independent expert benchmarks are, by definition, scarce in the places
+the comparison is made (the modifiable areal unit problem; Openshaw, 1984; Jelinski & Wu, 1996).
+Independent expert benchmarks are, by definition, scarce in the places
 surrogates are used, so validations are few; and where they exist they typically report a single
 correlation at a single unit and scale, leaving the robustness of the conclusion unexamined.
 
@@ -93,7 +96,8 @@ availability); we summarise the confirmed design here.
 The benchmarks are expert biodiversity assessments produced under the *Mapping the Future* program
 for six Northern Territory areas (referred to as catchments for brevity): the central Roper River
 catchment, Larrimah, Wadeye, Gunn Point, the NTP 3910 Deep Well area, and the Greater Weddell
-subregion. Five of these (Roper, Larrimah,
+subregion (Figure 1; Northern Territory Government, 2020, 2021a, 2021b, 2021c, 2024b, 2025). Five of
+these (Roper, Larrimah,
 Wadeye, Gunn Point, Deep Well) carry an identical ordinal *biodiversity risk* classification
 (`BIORISK`: 1 = nil/highly modified; 2 = low; 3 = mitigable; 4 = moderate/sensitive-or-significant;
 5 = high), assigned to expert-delineated polygons from field vegetation and fauna survey, and form
@@ -110,17 +114,21 @@ Each polygon was attributed five open-access surrogates (all reprojected to GDA9
 Albers, EPSG:3577; Table 1):
 
 - **Land-system rarity** (`sig_landsys`): the incumbent significance surrogate — the
-  log-inverse of the Territory-wide area of each land system (NT Land Systems, 1:250,000/1:1,000,000),
-  rescaled to [0,1] and area-weighted per unit.
+  log-inverse of the Territory-wide area of each land system (NT Land Systems, 1:250,000/1:1,000,000;
+  Northern Territory Government, n.d.), rescaled to [0,1] and area-weighted per unit.
 - **Vegetation-type rarity** (`sig_nvis_mvg`): the direct vegetation analogue — the log-inverse
   Territory-wide area of each National Vegetation Information System v7 Major Vegetation Group
-  (100 m; 22 native classes; non-vegetation classes treated as no-data).
+  (NVIS; Department of Climate Change, Energy, the Environment and Water, 2024; 100 m; 22 native
+  classes; non-vegetation classes treated as no-data).
 - **Vegetation cover** (`cond_dea`): a condition/intactness proxy — 100 minus the median bare-soil
-  fraction from Digital Earth Australia Fractional Cover Percentiles (Landsat, 30 m, 2020).
+  fraction from Digital Earth Australia Fractional Cover Percentiles (Landsat, 30 m, 2020;
+  Geoscience Australia, [year]).
 - **Agricultural convertibility** (`convertibility`): an area-weighted score derived from the
-  Northern Territory Land Use Mapping (ALUM primary classes); water treated as no-data.
+  Northern Territory Land Use Mapping (ALUM primary classes; Northern Territory Government, 2024a);
+  water treated as no-data.
 - **Formal protection** (`protection`): the fraction of the unit within the Collaborative
-  Australian Protected Areas Database.
+  Australian Protected Areas Database (CAPAD; Department of Climate Change, Energy, the Environment
+  and Water, 2022).
 
 `sig_landsys`, `sig_nvis_mvg`, `cond_dea` are candidate biodiversity-value surrogates;
 `convertibility` and `protection` are included as reference predictors.
@@ -139,10 +147,11 @@ is treated as a significance gate when they disagree; their divergence is itself
 Agreement was measured by Spearman rank correlation between each surrogate and the expert `BIORISK`
 class assigned to each polygon, weighting polygons either equally (E-UNIT) or by area (E-AREA).
 Because expert polygons are strongly spatially autocorrelated — so their count far exceeds the
-number of independent observations — we used a **spatial block bootstrap**: polygons were assigned
-to contiguous 10 km tiles (with 5 km and 20 km sensitivity), and tiles were resampled with
-replacement (2,000 iterations) so that whole neighbourhoods move together. Per-catchment Fisher-z
-variances from the bootstrap fed a DerSimonian–Laird random-effects meta-analysis. The Deep Well
+number of independent observations (Clifford et al., 1989; Legendre, 1993) — we used a **spatial
+block bootstrap**: polygons were assigned to contiguous 10 km tiles (with 5 km and 20 km
+sensitivity), and tiles were resampled with replacement (2,000 iterations) so that whole
+neighbourhoods move together. Per-catchment Fisher-z variances from the bootstrap fed a
+DerSimonian–Laird random-effects meta-analysis (DerSimonian & Laird, 1986). The Deep Well
 area yields only two 10 km blocks and was not estimable in the block bootstrap, so the pooled
 meta rests on four catchments (and, for protection, on the two in which protected areas overlapped
 the benchmark).
@@ -154,8 +163,9 @@ and (b) restriction to the mitigable-versus-moderate (class 3-vs-4) contrast.
 
 Finally, a **joint multivariate model** (a linear combiner of the surrogates) was evaluated
 **out-of-sample** to test whether combining adds predictive value beyond the best single surrogate,
-using (i) spatial-block cross-validation (holding out whole catchment × 10 km tiles) and (ii)
-leave-one-catchment-out (LOCO) transfer (training on four catchments and predicting the fifth). No
+using (i) spatial-block cross-validation (Roberts et al., 2017; holding out whole catchment × 10 km
+tiles) and (ii) leave-one-catchment-out (LOCO) transfer (training on four catchments and predicting
+the fifth). No
 catchment identifiers entered the transfer model, so it reflects application to an unsurveyed area.
 Out-of-sample skill was Spearman(predicted, observed) on held-out data; incremental value (joint
 minus best single) carried a block-bootstrap confidence interval; the train–test gap indexed
@@ -178,8 +188,8 @@ biodiversity value.
 
 Vegetation-type rarity showed the strongest per-unit agreement of any candidate surrogate (pooled
 ρ = 0.244, 0.149–0.334; positive in four of five catchments), robust to tile size (0.244–0.270).
-Critically, it survived the circularity control: after partialling out land-system rarity and
-convertibility it retained an independent association (partial ρ = 0.200, 0.079–0.314, p = 0.001;
+Critically, it survived the circularity control (Figure 3): after partialling out land-system rarity
+and convertibility it retained an independent association (partial ρ = 0.200, 0.079–0.314, p = 0.001;
 positive in every estimable catchment though heterogeneous in magnitude, I² ≈ 70%), and it
 discriminated `BIORISK` within the pure class-3-vs-4 contrast (e.g. Roper 0.15; Gunn Point 0.42). Its advantage over land-system rarity is thus not a definitional artefact. However, its agreement
 was estimand-dependent: under area-weighting it was heterogeneous and indistinguishable from zero
@@ -199,7 +209,7 @@ protected areas overlapped the benchmark).
 ### 3.4 Conclusions depend on unit, weighting and scale
 
 The three candidate significance/condition surrogates changed rank and even sign between the two
-co-primary estimands (Figure 3): NVIS rarity was best per-unit but null per-area; land-system rarity
+co-primary estimands (Figure 4): NVIS rarity was best per-unit but null per-area; land-system rarity
 was null per-unit but positive (leverage-driven) per-area; vegetation cover was null under both.
 Point estimates were stable across 5–20 km blocks, but the honest replication scale is
 small — Gunn Point's ~23,000 expert polygons correspond to only 15 independent 10 km blocks, Wadeye
@@ -208,7 +218,8 @@ to 6 — so per-catchment inference is weak and the multi-catchment meta is the 
 ### 3.5 Combining surrogates: modest transfer, no confirmed gain over the best single surrogate
 
 Out-of-sample (spatial-block cross-validation, E-UNIT), the joint model was a valid but weak screen
-(ρ = 0.218, 0.08–0.33), exceeding the best single surrogate (NVIS: ρ = 0.127, 0.05–0.26) in point
+(ρ = 0.218, 0.08–0.33; Table 3, Figure 5), exceeding the best single surrogate (NVIS: ρ = 0.127,
+0.05–0.26) in point
 estimate only; the incremental value of combining was not distinguishable from zero (Δρ = 0.074,
 −0.109 to 0.226). Adding vegetation cover reduced skill. Overfitting was modest (train–test gap
 ≈ 0.08). Under leave-one-catchment-out transfer the joint model predicted every held-out landscape
@@ -236,8 +247,9 @@ is indirect (Section 4.1). Third,
 **agricultural convertibility remained the most consistent correlate**, suggesting that part of any
 surrogate's apparent success may reflect where land is available as much as where biodiversity is.
 
-Two cautions follow. The first is methodological: **conclusions were estimand- and scale-dependent.**
-A surrogate that appears predictive when landscape area is the currency can be uninformative when
+Two cautions follow. The first is methodological: **conclusions were estimand- and scale-dependent**
+(Openshaw, 1984; Jelinski & Wu, 1996). A surrogate that appears predictive when landscape area is the
+currency can be uninformative when
 each expert unit is the currency, and vice versa. Because small, high-value units (riparian zones,
 groundwater-dependent and significant-vegetation patches) are often precisely those a screen must
 not miss, the per-unit estimand is the more conservative and, we argue, the more appropriate default
@@ -346,33 +358,90 @@ Northern Territory, with their extents and `BIORISK` class composition.
 agreement of each surrogate with expert `BIORISK` at the per-expert-unit estimand, with spatial
 block-bootstrap 95% intervals. Vegetation-type rarity is highest; land-system rarity overlaps zero.
 
-**Figure 3.** Estimand and scale sensitivity. (a) Pooled agreement under the two co-primary
-estimands (per-unit vs per-area) for each surrogate, showing rank/sign changes; (b) robustness of
-the per-unit estimates to block size (5, 10, 20 km).
-
-**Figure 4.** NVIS circularity control. Per-catchment raw agreement, partial agreement controlling
+**Figure 3.** NVIS circularity control. Per-catchment raw agreement, partial agreement controlling
 for land-system rarity and convertibility, and agreement restricted to the class-3-vs-4 contrast;
 the independent signal is retained.
+
+**Figure 4.** Estimand and scale sensitivity. (a) Pooled agreement under the two co-primary
+estimands (per-unit vs per-area) for each surrogate, showing rank/sign changes; (b) robustness of
+the per-unit estimates to block size (5, 10, 20 km).
 
 **Figure 5.** Joint model and transfer. Out-of-sample (spatial-block CV) agreement of single vs
 joint models, and leave-one-catchment-out transfer skill per held-out catchment; combining does not
 significantly exceed the best single surrogate.
 
-## Data and code availability
+## Acknowledgements
 
-The full pre-registration, analysis scripts (harmonisation, block-bootstrap meta, circularity
-control, joint model with spatial cross-validation), and a per-number provenance log regenerate every
-reported value from the archived inputs; seeds are fixed. Expert benchmarks and open-data surrogates
-are open Northern Territory and Australian Government layers (Table 1); sources and licences are
-documented in the repository.
+[To be completed.]
+
+## Author Contributions
+
+[Author contributions, following the CRediT taxonomy, to be completed once the author list is finalised.]
+
+## Funding
+
+[To be completed.]
+
+## Conflict of Interest
+
+[To be completed.]
+
+## Ethics Statement
+
+Not applicable. This study used pre-existing, publicly available government biodiversity assessments and open spatial datasets, and involved no new collection of data from human participants or animals.
+
+## Data Availability
+
+The expert biodiversity benchmarks and all open-data surrogate layers analysed in this study are open Northern Territory and Australian Government datasets (see Table 1 and References); their sources and licences are documented in the project repository. The derived, harmonised analysis data are archived at [repository/DOI to be completed].
+
+## Code Availability
+
+The full pre-registration, analysis scripts (harmonisation, block-bootstrap meta-analysis, circularity control, and the joint model with spatial cross-validation), and a per-number provenance log regenerate every reported value from the archived inputs; random seeds are fixed. Code is available at [repository URL/DOI to be completed].
 
 ## References
 
-*[To be completed with co-authors. Confirmed benchmark source: Buckley, K., Leiper, I., Nano, C.,
-Wedd, D. & Wilson, D. (2024) Mapping the Future — Biodiversity assessment of the central Roper River
-catchment. Technical Report 14/2024, DEPWS, NT Government, Darwin; plus the five further Mapping the
-Future assessments (Larrimah, Wadeye, Gunn Point, NTP 3910/Deep Well, Greater Weddell). Standard
-methodological citations to be added: systematic conservation planning; biodiversity surrogacy;
-modifiable areal unit problem; spatial cross-validation / spatial autocorrelation; DerSimonian–Laird
-meta-analysis; NVIS; Digital Earth Australia Fractional Cover. Placeholders flagged for co-author
-input.]*
+Clifford, P., Richardson, S. & Hémon, D. (1989) Assessing the significance of the correlation between two spatial processes. *Biometrics*, 45, 123–134. https://doi.org/10.2307/2532039
+
+Department of Climate Change, Energy, the Environment and Water (2022) *Collaborative Australian Protected Areas Database (CAPAD) 2022 – Terrestrial* [dataset]. Australian Government, Canberra. https://www.dcceew.gov.au/environment/land/nrs/science/capad/2022
+
+Department of Climate Change, Energy, the Environment and Water (2024) *National Vegetation Information System (NVIS), Version 7.0* [dataset]. Australian Government, Canberra. https://www.dcceew.gov.au/environment/environment-information-australia/national-vegetation-information-system
+
+DerSimonian, R. & Laird, N. (1986) Meta-analysis in clinical trials. *Controlled Clinical Trials*, 7, 177–188. https://doi.org/10.1016/0197-2456(86)90046-2
+
+Geoscience Australia ([year — to be confirmed]) *DEA Fractional Cover Percentiles (Landsat), Version 4.0.0* [dataset]. Commonwealth of Australia (Geoscience Australia). https://doi.org/10.26186/150570
+
+Jelinski, D.E. & Wu, J. (1996) The modifiable areal unit problem and implications for landscape ecology. *Landscape Ecology*, 11, 129–140. https://doi.org/10.1007/BF02447512
+
+Legendre, P. (1993) Spatial autocorrelation: trouble or new paradigm? *Ecology*, 74, 1659–1673. https://doi.org/10.2307/1939924
+
+Margules, C.R. & Pressey, R.L. (2000) Systematic conservation planning. *Nature*, 405, 243–253. https://doi.org/10.1038/35012251
+
+Northern Territory Government (n.d.) *Northern Territory land systems (compilation of north_250 and south_1M)* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/northern-territory-land-systems-compilation-of-north-250-and-south-1m
+
+Northern Territory Government (2020) *Risk to biodiversity in the Gunn Point area, 2020* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/risk-to-biodiversity-in-the-gunn-point-area-2020
+
+Northern Territory Government (2021a) *Biodiversity assessment study of NTP 3910 in the Deep Well area, 2021* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/biodiversity-assessment-of-ntp-3910-in-the-deep-well-area-2021
+
+Northern Territory Government (2021b) *Risk to biodiversity in the Wadeye area, 2021* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/risk-to-biodiversity-in-the-wadeye-area-2021
+
+Northern Territory Government (2021c) *Risk to biodiversity of the Larrimah area, 2021* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/risk-to-biodiversity-of-the-larrimah-area-2021
+
+Northern Territory Government (2024a) *Land use mapping project of the Northern Territory, 2016–2024 (LUMP)* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/land-use-mapping-project-of-the-northern-territory-2016-current-lump
+
+Northern Territory Government (2024b) *Risk to biodiversity of the central Roper River catchment, 2024* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/risk-to-biodiversity-of-the-central-roper-river-catchment-2024
+
+Northern Territory Government (2025) *Biodiversity assessment of the Greater Weddell subregion* [dataset]. Northern Territory Government, Darwin. https://data.nt.gov.au/dataset/biovalue_greater_weddell
+
+Openshaw, S. (1984) *The Modifiable Areal Unit Problem. Concepts and Techniques in Modern Geography 38.* Geo Books, Norwich. ISBN 0-86094-134-5. http://qmrg.org.uk/files/2008/11/38-maup-openshaw.pdf
+
+Roberts, D.R., Bahn, V., Ciuti, S., Boyce, M.S., Elith, J., Guillera-Arroita, G., Hauenstein, S., Lahoz-Monfort, J.J., Schröder, B., Thuiller, W., Warton, D.I., Wintle, B.A., Hartig, F. & Dormann, C.F. (2017) Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. *Ecography*, 40, 913–929. https://doi.org/10.1111/ecog.02881
+
+Rodrigues, A.S.L. & Brooks, T.M. (2007) Shortcuts for biodiversity conservation planning: the effectiveness of surrogates. *Annual Review of Ecology, Evolution, and Systematics*, 38, 713–737. https://doi.org/10.1146/annurev.ecolsys.38.091206.095737
+
+## Biosketch
+
+[Biosketch (approximately 30–100 words) to be completed once authorship is finalised.]
+
+## Supporting Information
+
+[Supporting Information to be listed here with captions, or state "None".]

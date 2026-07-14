@@ -168,9 +168,9 @@ def fig2():
     save(fig, "Figure2_surrogate_benchmarking")
 
 # =====================================================================================
-# FIGURE 3 — Estimand & scale sensitivity
+# FIGURE 4 — Estimand & scale sensitivity
 # =====================================================================================
-def fig3():
+def fig4():
     order = ["sig_nvis_mvg", "convertibility", "cond_dea", "sig_landsys", "protection"]
     fig, axes = plt.subplots(1, 2, figsize=(170*MM, 78*MM)); a, b = axes
     yy = np.arange(len(order))[::-1]
@@ -199,12 +199,12 @@ def fig3():
     b.set_xlabel("Spatial block size"); b.set_ylabel("Pooled Spearman ρ (per unit)")
     b.set_title("(b) Scale (block-size) robustness", loc="left", fontweight="bold")
     b.set_xlim(-0.3, 2.3); b.legend(loc="center right", frameon=False, fontsize=6.6)
-    save(fig, "Figure3_estimand_scale_sensitivity")
+    save(fig, "Figure4_estimand_scale_sensitivity")
 
 # =====================================================================================
-# FIGURE 4 — NVIS circularity control
+# FIGURE 3 — NVIS circularity control
 # =====================================================================================
-def fig4():
+def fig3():
     cats = [c for c in CATCH if c in CIRC.catchment.values]
     fig, ax = plt.subplots(figsize=(130*MM, 74*MM))
     ax.axhline(0, color="0.6", lw=0.8, ls="--", zorder=0)
@@ -226,7 +226,7 @@ def fig4():
             va="center", ha="left", fontsize=6.6, color=OI["blue"])
     ax.set_xlim(-0.6, len(cats)-0.1+0.9)
     ax.legend(loc="upper center", bbox_to_anchor=(0.42, 1.0), frameon=False, fontsize=6.8)
-    save(fig, "Figure4_circularity_control")
+    save(fig, "Figure3_circularity_control")
 
 # =====================================================================================
 # FIGURE 5 — Joint model & transfer
