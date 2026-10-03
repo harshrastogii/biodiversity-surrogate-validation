@@ -21,7 +21,7 @@ import config as C
 OUT = os.path.join(C.V2, "analysis_p3"); os.makedirs(OUT, exist_ok=True)
 SURR = ["sig_landsys", "sig_nvis_mvg", "cond_dea", "convertibility", "protection"]
 B = 2000; SEED = 42; rng = np.random.default_rng(SEED)
-poly = pd.read_parquet(os.path.join(C.PROC, "harmonized_polygon.parquet"))
+poly = C.load_polygons()  # surrogates rounded: see config.load_polygons
 
 def bench_centroids(name):
     b = C.BENCHMARKS[name]
@@ -132,8 +132,9 @@ def partial_boot(name, tile_m):
         idx = np.concatenate([idx_by[t] for t in pick])
         try: bs.append(pcorr(idx))
         except Exception: pass
-    z = np.arctanh(np.clip(np.array(bs), -0.999, 0.999))
-    return obs, float(np.var(z))
+    bs = np.array(bs); bs = bs[np.isfinite(bs)]  # P4 fix: NaN replicates silently dropped Larrimah (k=3)
+    z = np.arctanh(np.clip(bs, -0.999, 0.999))
+    return obs, float(np.var(z)) if len(z) > 10 else np.nan
 
 # ---- main -----------------------------------------------------------------
 per10, meta10 = run(10000)

@@ -413,3 +413,28 @@ single surrogate, but the ceiling is a MODEST screening-level agreement — not 
 map. NVIS is the best/most-transferable single significance surrogate.
 
 ### P3 COMPLETE. Confirmatory analysis finalised; no further statistical analysis is essential.
+
+---
+
+## P4 — PRE-SUBMISSION PANEL REVIEW (2026-10-03). Several P3 conclusions REOPENED.
+
+Independent five-reviewer panel (statistics, fact-check, mock referee, literature/novelty,
+publishing). Full report: `paper/PANEL_REVIEW.md`. Verified from the committed parquet:
+
+- **F1 floating-point ties.** Area-weighted overlays leave ~1e-17 residue; `nunique()` and Spearman
+  treat it as signal. Wadeye convertibility is constant (its ρ entered the meta); Deep Well NVIS
+  −0.254 is really 0.000. Fix: `config.load_polygons()` rounds surrogates to 6 d.p. in every script.
+- **F2 sliver polygons.** 85% of Gunn Point polygons < 1 ha (median 203 m²). At ≥1 ha, land-system
+  E-UNIT 0.14→0.29 (> NVIS 0.20); Wadeye 0.02→0.20. "Land-system fails per unit" is not robust.
+- **F3 convertibility ≈ modification.** Roper ρ 0.21→0.02 excluding BIORISK 1.
+- **F4 NVIS carried by rare (coastal/wetland) MVGs** that expert rules mark sensitive; class-5 AUC
+  at Gunn Point NVIS 0.46 vs land-system 0.69.
+- **F5–F8** unpaired Δρ bootstrap; DL with k=3–4 (HKSJ needed); circularity meta silently k=3
+  (NaN replicates dropped Larrimah — fixed in `p3_blockboot.py`); area-weighted Spearman used
+  unweighted ranks.
+- **"Pre-registered" withdrawn** → "pre-specified", deviations disclosed (manuscript §2.5).
+
+**Decision pending (author):** Option A corrected original vs **Option B (recommended)** reframe as
+a multiverse/specification-curve validation (analysis R6 in `scripts/p4_revision.py`), optionally
+Option C adding global TNFD-type screening layers under a genuine OSF pre-registration.
+**Next:** run `export_centroids.py`, P3 scripts and `p4_revision.py` locally; rewrite against outputs.

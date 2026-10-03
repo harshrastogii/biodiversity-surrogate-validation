@@ -21,7 +21,7 @@ import config as C
 
 OUT = os.path.join(C.V2, "analysis_p3"); os.makedirs(OUT, exist_ok=True)
 SURR = ["sig_landsys", "sig_nvis_mvg", "cond_dea", "convertibility", "protection"]
-poly = pd.read_parquet(os.path.join(C.PROC, "harmonized_polygon.parquet"))
+poly = C.load_polygons()  # surrogates rounded: see config.load_polygons
 
 def bench_centroids(name):
     """re-derive polygon geometry aligned to unit_id 'p{i}' (mirrors harmonize.load_benchmark)."""

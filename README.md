@@ -1,6 +1,6 @@
 # Validating open-data biodiversity surrogates against expert assessment (Northern Territory)
 
-A pre-registered, multi-catchment validation of open-access spatial **biodiversity surrogates**
+A pre-specified, multi-catchment validation of open-access spatial **biodiversity surrogates**
 against independent **expert biodiversity assessments** in the Northern Territory, Australia.
 This repository contains the complete, reproducible analysis pipeline, the confirmed results, the
 figures, and the manuscript draft (target journal: *Diversity and Distributions*).
@@ -10,7 +10,7 @@ figures, and the manuscript draft (target journal: *Diversity and Distributions*
 > surrogates help or transfer to unsurveyed landscapes; and are these answers robust to the
 > analysis unit, weighting and spatial scale?
 
-## Key findings (as supported by the confirmed analyses)
+## Key findings (P3 version — under revision, see `paper/PANEL_REVIEW.md`)
 
 - The commonly-used **land-system / landform-rarity** surrogate did **not** reproduce expert value
   at the level of expert-delineated units (pooled Spearman ρ = 0.085, 95% CI −0.003 to 0.172).
@@ -33,7 +33,7 @@ which surrogate looks best depends on the analysis unit, weighting and scale.
 ├── README.md               This file
 ├── LICENSE                 MIT licence (code); see "Licensing" for text/figures/data
 ├── requirements.txt        Python dependencies (pinned)
-├── RESEARCH_LOG.md         Full decision log + pre-registrations (P1.PR, P3.PR1/PR2)
+├── RESEARCH_LOG.md         Full decision log + pre-specified analysis plans (P3.PR1/PR2)
 ├── scripts/                Reproducible pipeline
 │   ├── config.py           Paths, catchment registry, locked surrogate scoring
 │   ├── harmonize.py        Build analysis dataset (plug-in surrogate registry)
@@ -56,8 +56,10 @@ which surrogate looks best depends on the analysis unit, weighting and scale.
 > **Note.** The raw source layers (~0.9 GB of downloaded government data) are **not** stored here.
 > They are reproducible from the public sources documented in
 > [`data/meta/P0_DATA_MANIFEST.md`](data/meta/P0_DATA_MANIFEST.md); the ignore rules are in
-> `.gitignore`. The small harmonised products in `data/processed/` are included so that the
-> confirmatory analyses and figures can be re-run without re-downloading the raw data.
+> `.gitignore`. The harmonised attribute tables in `data/processed/` are included, but the spatial
+> analyses also need polygon locations: run `scripts/export_centroids.py` once (with the raw
+> benchmarks present) and commit `data/processed/polygon_centroids.parquet`; after that every
+> analysis re-runs from this repository alone.
 
 ## Reproducing the analysis
 
@@ -77,16 +79,19 @@ python scripts/harmonize.py        # -> data/processed/harmonized_{grid,polygon}
 python scripts/p3_confirmatory.py  # -> analysis_p3/ (per-catchment, meta, circularity)
 python scripts/p3_blockboot.py     # -> analysis_p3/hardened_* (spatial block bootstrap)
 python scripts/p3_joint.py         # -> analysis_p3/joint_* (cross-validated joint model)
+python scripts/export_centroids.py # -> data/processed/polygon_centroids.parquet (once; needs raw benchmarks)
+python scripts/p4_revision.py      # -> analysis_p4/ (panel-review robustness + multiverse; ~1-3 h)
 python scripts/make_figures.py     # -> paper/figures/
 ```
 
 Figures 2–5 regenerate from the committed `analysis_p3/` outputs alone; Figure 1 additionally
 requires the benchmark geometries and an NT boundary layer.
 
-## Pre-registration and research log
+## Analysis plan and research log
 
-The analysis was pre-registered before the confirmatory runs. The full decision trail —
-including the pre-registrations (`P3.PR1` co-primary estimands; `P3.PR2` confirmatory spec), the
+The analysis plan was fixed in the research log before the confirmatory runs (after an exploratory
+phase; not lodged in a public registry, so we call it *pre-specified*). The full decision trail —
+including the plans (`P3.PR1` co-primary estimands; `P3.PR2` confirmatory spec), the
 milestone self-reviews, and every design choice with its alternatives — is in
 [`RESEARCH_LOG.md`](RESEARCH_LOG.md). Exploratory precursor analyses are preserved under
 [`exploratory/`](exploratory/) and are **not** used in the manuscript.
@@ -110,8 +115,8 @@ Digital Earth Australia Fractional Cover, and CAPAD. These remain under their or
 
 If you use this work, please cite the manuscript (in preparation) and this repository:
 
-> Rastogi, H. *et al.* (2026). *Which open-data surrogates reproduce expert biodiversity
-> assessment? A pre-registered multi-catchment validation in northern Australia.* Manuscript in
+> Rastogi, H. (2026). *Which open-data surrogates reproduce expert biodiversity
+> assessment? A pre-specified multi-catchment validation in northern Australia.* Manuscript in
 > preparation. Code and data: https://github.com/harshrastogii/biodiversity-surrogate-validation.
 
 *(Author list, DOI, and journal to be finalised.)*

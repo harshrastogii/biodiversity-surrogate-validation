@@ -27,7 +27,7 @@ import config as C
 
 OUT = os.path.join(C.V2, "analysis_p3"); os.makedirs(OUT, exist_ok=True)
 B = 2000; rng = np.random.default_rng(42)
-poly = pd.read_parquet(os.path.join(C.PROC, "harmonized_polygon.parquet"))
+poly = C.load_polygons()  # surrogates rounded: see config.load_polygons
 
 def centroids(name):
     b = C.BENCHMARKS[name]; g = gpd.read_file(b["path"], layer=b["layer"]).to_crs(C.CRS)

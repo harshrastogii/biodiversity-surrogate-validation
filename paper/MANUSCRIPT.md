@@ -1,4 +1,11 @@
-# Which open-data surrogates reproduce expert biodiversity assessment? A pre-registered multi-catchment validation in northern Australia
+> **REVISION STATUS (2026-10-03) — do not submit this version.** A pre-submission panel review
+> (`paper/PANEL_REVIEW.md`) found numerical artefacts and inferential issues that change several
+> headline numbers (Wadeye/Deep Well floating-point ties, sliver polygons, unpaired Δρ bootstrap,
+> small-k meta-analysis, k = 3 circularity meta). Results, tables and figures must be regenerated with
+> `scripts/p4_revision.py` and the corrected P3 scripts before the text is finalised. Only wording
+> and citation corrections that do not depend on the re-run have been applied below.
+
+# Which open-data surrogates reproduce expert biodiversity assessment? A pre-specified multi-catchment validation in northern Australia
 
 **Running title:** Validating open-data biodiversity surrogates
 
@@ -25,7 +32,7 @@ unsurveyed landscapes, and how robust the answers are.
 **Methods.** Using expert assessments for six areas — five on an identical ordinal biodiversity-risk
 scale (*BIORISK*, 1–5), one (Greater Weddell) on a related scheme analysed separately — we validated
 five open-access surrogates (land-system rarity, vegetation-type (NVIS) rarity, vegetation cover (DEA
-Fractional Cover), convertibility, protection) at the native expert-polygon unit. Pre-registered, it
+Fractional Cover), convertibility, protection) at the native expert-polygon unit. Following an exploratory phase, a pre-specified analysis plan
 used two co-primary estimands (per-unit, per-area), a spatial block bootstrap with random-effects
 meta-analysis, a circularity control for the leading surrogate, and a joint model evaluated
 out-of-sample (spatial-block cross-validation; leave-one-catchment-out transfer).
@@ -80,7 +87,7 @@ Using six such assessments, we ask a deliberately practical and testable questio
 > to unsurveyed landscapes; and are these answers robust to the analysis unit, weighting and
 > spatial scale?*
 
-We pre-registered the analysis, adopted two co-primary estimands so that unit/weighting sensitivity
+We fixed the analysis plan before the confirmatory runs (Section 2.5), adopted two co-primary estimands so that unit/weighting sensitivity
 is reported rather than hidden, used spatial inference appropriate to strongly autocorrelated expert
 polygons, and evaluated the multivariate combination out-of-sample and under landscape transfer.
 The result is both an empirical answer for northern Australia and a transferable, honest template
@@ -88,7 +95,7 @@ for validating biodiversity surrogates elsewhere.
 
 ## 2. Materials and Methods
 
-The full pre-registration, code and per-number provenance are archived (Data and code
+The full analysis plan, code and per-number provenance are archived (Data and code
 availability); we summarise the confirmed design here.
 
 ### 2.1 Study area and expert benchmarks
@@ -122,7 +129,7 @@ Albers, EPSG:3577; Table 1):
   classes; non-vegetation classes treated as no-data).
 - **Vegetation cover** (`cond_dea`): a condition/intactness proxy — 100 minus the median bare-soil
   fraction from Digital Earth Australia Fractional Cover Percentiles (Landsat, 30 m, 2020;
-  Geoscience Australia, [year]).
+  Lymburner, 2021).
 - **Agricultural convertibility** (`convertibility`): an area-weighted score derived from the
   Northern Territory Land Use Mapping (ALUM primary classes; Northern Territory Government, 2024a);
   water treated as no-data.
@@ -133,11 +140,11 @@ Albers, EPSG:3577; Table 1):
 `sig_landsys`, `sig_nvis_mvg`, `cond_dea` are candidate biodiversity-value surrogates;
 `convertibility` and `protection` are included as reference predictors.
 
-### 2.3 Analysis unit and co-primary estimands (pre-registered)
+### 2.3 Analysis unit and co-primary estimands (pre-specified)
 
 Because a surrogate can agree with expert judgement per delineated unit yet not per unit area (small
 high-value polygons carry equal weight in the former, negligible weight in the latter), we
-pre-registered **two co-primary estimands**: **E-UNIT** (each expert polygon weighted equally) and
+pre-specified **two co-primary estimands**: **E-UNIT** (each expert polygon weighted equally) and
 **E-AREA** (polygons weighted by area). Both are always reported; a surrogate is judged validated
 only if positive under both, null if null under both, and *estimand-dependent* otherwise. Neither
 is treated as a significance gate when they disagree; their divergence is itself a result.
@@ -170,6 +177,19 @@ catchment identifiers entered the transfer model, so it reflects application to 
 Out-of-sample skill was Spearman(predicted, observed) on held-out data; incremental value (joint
 minus best single) carried a block-bootstrap confidence interval; the train–test gap indexed
 overfitting. All analyses used fixed seeds and are reproducible from the archived scripts.
+
+### 2.5 Analysis plan and departures from it
+
+The confirmatory plan (co-primary estimands, surrogate set, missing-data policy, pooling, leverage
+guardrail and circularity tests) was written into a version-controlled research log before the
+confirmatory runs, but after an exploratory phase on the same data in which NVIS rarity had already
+appeared to outperform land-system rarity; it was not lodged in a public registry. We therefore
+describe it as pre-specified rather than pre-registered. Departures from the plan were: (i) the
+pre-specified KNN effective-sample-size correction was replaced by a spatial block bootstrap after
+the KNN results showed it under-captured long-range dependence (both are reported; Supporting
+Information); (ii) the joint model and its cross-validation scheme were specified after the
+single-surrogate results; and (iii) the robustness analyses in Section 3.6 were added after an
+independent pre-submission review. [Finalise this list after the P4 re-run.]
 
 ## 3. Results
 
@@ -234,7 +254,7 @@ none (−0.10), vegetation cover none (−0.03).
 
 ## 4. Discussion
 
-Across six independent expert assessments, open-access spatial surrogates reproduced expert
+Across six expert assessments from one government program, open-access spatial surrogates reproduced expert
 biodiversity judgement only weakly, and which surrogate did best depended on how the question was
 posed. Three findings are robust. First, the **land-system/landform-rarity surrogate — among the
 most widely used low-cost biodiversity proxies — did not reproduce expert value at the level of
@@ -260,7 +280,7 @@ are defensible as first-pass screening tools with mapped uncertainty; they are n
 maps and should not be presented as such.
 
 That said, the news is not wholly negative. A better-grounded, still-cheap surrogate (vegetation-type
-rarity) outperformed the incumbent and transferred positively to every held-out landscape, indicating
+rarity) outperformed the incumbent per unit, and the joint model transferred positively to every held-out landscape, indicating
 that surrogate *choice* matters and that open data can support cautious cross-landscape screening
 where no survey exists.
 
@@ -299,7 +319,7 @@ data-poor northern Australia, and the conclusion one draws depends on the spatia
 scale of analysis. At the level of expert-delineated units, a vegetation-type-rarity surrogate
 modestly and genuinely outperforms the widely used land-system-rarity surrogate and survives
 circularity controls, but no surrogate — alone or combined, and under either weighting — rises above
-the level of a weak first-pass screen. Transparent, pre-registered,
+the level of a weak first-pass screen. Transparent, pre-specified,
 multi-benchmark validation with explicit estimands is what makes these limits visible, and we
 recommend it as standard before open-data surrogates are used to guide conservation decisions.
 
@@ -310,7 +330,7 @@ recommend it as standard before open-data surrogates are used to guide conservat
 | Expert benchmark (BIORISK) | Approx. area (km²) | Expert polygons | Classes present |
 |---|---|---|---|
 | Roper | 17,254 | 6,342 | 1,3,4,5 |
-| Gunn Point | 713 | 23,315 | 1–5 |
+| Gunn Point | 704 | 23,315 | 1–5 |
 | Larrimah | 486 | 19 | 3,4 |
 | Wadeye | 178 | 412 | 2,4,5 |
 | Deep Well (NTP 3910) | 22 | 6 | 2,3,4 |
@@ -396,7 +416,7 @@ The expert biodiversity benchmarks and all open-data surrogate layers analysed i
 
 ## Code Availability
 
-The full pre-registration, analysis scripts (harmonisation, block-bootstrap meta-analysis, circularity control, and the joint model with spatial cross-validation), and a per-number provenance log regenerate every reported value from the archived inputs; random seeds are fixed. Code is available at [repository URL/DOI to be completed].
+The full analysis plan, analysis scripts (harmonisation, block-bootstrap meta-analysis, circularity control, and the joint model with spatial cross-validation), and a per-number provenance log regenerate every reported value from the archived inputs; random seeds are fixed. Code is available at [repository URL/DOI to be completed].
 
 ## References
 
@@ -408,7 +428,7 @@ Department of Climate Change, Energy, the Environment and Water (2024) *National
 
 DerSimonian, R. & Laird, N. (1986) Meta-analysis in clinical trials. *Controlled Clinical Trials*, 7, 177–188. https://doi.org/10.1016/0197-2456(86)90046-2
 
-Geoscience Australia ([year — to be confirmed]) *DEA Fractional Cover Percentiles (Landsat), Version 4.0.0* [dataset]. Commonwealth of Australia (Geoscience Australia). https://doi.org/10.26186/150570
+Lymburner, L. (2021) *Geoscience Australia Landsat Fractional Cover Percentiles Collection 3* (product `ga_ls_fc_pc_cyear_3`) [dataset]. Geoscience Australia, Canberra. https://doi.org/10.26186/150570
 
 Jelinski, D.E. & Wu, J. (1996) The modifiable areal unit problem and implications for landscape ecology. *Landscape Ecology*, 11, 129–140. https://doi.org/10.1007/BF02447512
 
