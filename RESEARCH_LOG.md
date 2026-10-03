@@ -413,3 +413,44 @@ single surrogate, but the ceiling is a MODEST screening-level agreement — not 
 map. NVIS is the best/most-transferable single significance surrogate.
 
 ### P3 COMPLETE. Confirmatory analysis finalised; no further statistical analysis is essential.
+
+---
+
+## P4 — PRE-SUBMISSION AUDIT (2026-10-03). Several P3 conclusions REOPENED.
+
+Before submission I re-audited the statistics, every reported number, the references and the
+ecological interpretation, reading the paper as a hostile referee would. Verified from the committed
+parquet:
+
+- **F1 floating-point ties.** Area-weighted overlays leave ~1e-17 residue; `nunique()` and Spearman
+  treat it as signal. Wadeye convertibility is constant (its ρ entered the meta); Deep Well NVIS
+  −0.254 is really 0.000. Fix: `config.load_polygons()` rounds surrogates to 6 d.p. in every script.
+- **F2 sliver polygons.** 85% of Gunn Point polygons < 1 ha (median 203 m²). At ≥1 ha, land-system
+  E-UNIT 0.14→0.29 (> NVIS 0.20); Wadeye 0.02→0.20. "Land-system fails per unit" is not robust.
+- **F3 convertibility ≈ modification.** Roper ρ 0.21→0.02 excluding BIORISK 1.
+- **F4 NVIS carried by rare (coastal/wetland) MVGs** that expert rules mark sensitive; class-5 AUC
+  at Gunn Point NVIS 0.46 vs land-system 0.69.
+- **F5–F8** unpaired Δρ bootstrap; DL with k=3–4 (HKSJ needed); circularity meta silently k=3
+  (NaN replicates dropped Larrimah — fixed in `p3_blockboot.py`); area-weighted Spearman used
+  unweighted ranks.
+- **"Pre-registered" withdrawn** → "pre-specified", deviations disclosed (manuscript §2.5).
+
+**Decision pending (author):** Option A corrected original vs **Option B (recommended)** reframe as
+a multiverse/specification-curve validation (analysis R6 in `scripts/p4_revision.py`), optionally
+Option C adding global TNFD-type screening layers under a genuine OSF pre-registration.
+**Next:** run `export_centroids.py`, P3 scripts and `p4_revision.py` locally; rewrite against outputs.
+
+### P4 decisions (2026-10-03, continued)
+- **Framing changed** to a multiverse validation: 30 specifications (5 metrics × 3 minimum polygon
+  sizes × class-1 in/out), paired NVIS − land-system differences, HKSJ intervals. The single-
+  specification P3 verdicts are reported as one point on that curve.
+- **Rounding tightened to 4 d.p.** At 6 d.p. a 1.4e-5 sliver still made Deep Well land-system ρ
+  = 0.354. Consequence: Deep Well LOCO for the joint model is 0.000, so the P3 claim "transferred
+  positively to every held-out catchment" is withdrawn (true for the four catchments with > 6 polygons).
+- **Area-weighted ρ now uses area-weighted mid-ranks** (P3 used unweighted ranks; Gunn Point
+  land-system E-AREA 0.309 → 0.006).
+- **AUC pooled on the logit scale**, correlations on Fisher z, so intervals stay in range.
+- **Roper provenance problem.** The Roper benchmark is read from `nt_exposure/data/roper_intersection.gpkg`
+  (a V1 intersection product), and 2,263 of its 6,342 polygons are < 1 m². Rebuild Roper from the
+  original NT dataset before the final run.
+- Per-catchment estimates are final; pooled values need the real centroids (`export_centroids.py`).

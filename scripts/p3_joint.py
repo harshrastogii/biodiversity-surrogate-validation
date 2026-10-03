@@ -27,7 +27,7 @@ import config as C
 
 OUT = os.path.join(C.V2, "analysis_p3"); os.makedirs(OUT, exist_ok=True)
 B = 2000; rng = np.random.default_rng(42)
-poly = pd.read_parquet(os.path.join(C.PROC, "harmonized_polygon.parquet"))
+poly = C.load_polygons()  # surrogates rounded: see config.load_polygons
 
 def centroids(name):
     b = C.BENCHMARKS[name]; g = gpd.read_file(b["path"], layer=b["layer"]).to_crs(C.CRS)
@@ -111,8 +111,12 @@ def delta(joint, est):
     singles_e = res[(res.model.isin(SINGLES)) & (res.estimand == est)]
     best = singles_e.loc[singles_e.test_rho.idxmax(), "model"]
     bj, bb = bootcache[(joint, est)], bootcache[(best, est)]
+    # NOTE (P4): bj and bb are independent bootstrap draws on different rows/folds, so this CI is
+    # NOT a valid interval for the difference. Kept for the record; the paired test is p4_revision R2.
     m = min(len(bj), len(bb)); d = bj[:m]-bb[:m]
-    return best, float(np.median(d)), float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))
+    obs = float(singles_e.loc[singles_e.model == best, "test_rho"].iloc[0])
+    obs = float(res[(res.model == joint) & (res.estimand == est)].test_rho.iloc[0]) - obs
+    return best, obs, float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))
 
 # ---- LOCO transfer ----
 loco_core = loco(CORE); loco_best_nvis = loco(["sig_nvis_mvg"]); loco_conv = loco(["convertibility"])

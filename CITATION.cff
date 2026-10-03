@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
-title: "Which open-data surrogates reproduce expert biodiversity assessment? A pre-registered multi-catchment validation in northern Australia"
+title: "Analytical choices decide which open-data surrogate agrees with expert biodiversity assessment: a multiverse validation in northern Australia"
 version: "1.0"
 date-released: "2026-07-14"
 type: software
@@ -9,7 +9,7 @@ authors:
   - family-names: Rastogi
     given-names: Harsh
     affiliation: Charles Darwin University
-  # Additional co-authors to be completed before publication.
+    orcid: "https://orcid.org/0009-0004-9452-0206"
 repository-code: "https://github.com/harshrastogii/biodiversity-surrogate-validation"
 url: "https://github.com/harshrastogii/biodiversity-surrogate-validation"
 keywords:
@@ -18,10 +18,9 @@ keywords:
   - open data
   - expert assessment
   - validation
-  - modifiable areal unit problem
+  - multiverse analysis
   - spatial cross-validation
   - northern Australia
 abstract: >-
-  A pre-registered, multi-catchment validation of open-access spatial biodiversity surrogates
-  against independent expert biodiversity assessments in the Northern Territory, Australia,
-  including the reproducible analysis pipeline, confirmed results, figures, and manuscript draft.
+  Code, data and manuscript for a multiverse validation of five open-access biodiversity
+  surrogates against Northern Territory Government expert biodiversity-risk assessments.

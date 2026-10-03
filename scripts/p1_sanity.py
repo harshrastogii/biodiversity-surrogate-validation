@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config as C
 
 grid = pd.read_parquet(os.path.join(C.PROC, "harmonized_grid.parquet"))
-poly = pd.read_parquet(os.path.join(C.PROC, "harmonized_polygon.parquet"))
+poly = C.load_polygons()  # surrogates rounded: see config.load_polygons
 SURR = ["sig_landsys", "convertibility", "protection"]
 
 def rho(df, s):
