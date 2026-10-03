@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-p4_revision.py — pre-submission robustness analyses (panel-review fixes). Run AFTER p3_*.py.
+p4_revision.py — pre-submission robustness analyses (RESEARCH_LOG P4). Run AFTER p3_*.py.
 Nothing here replaces the P3 outputs; it adds the checks a Q1 referee will ask for, and
 corrects two inferential weaknesses. Everything is reported, whatever it shows.
 
@@ -30,11 +30,11 @@ corrects two inferential weaknesses. Everything is reported, whatever it shows.
 
 Writes analysis_p4/{report.txt, per_catchment_z.csv, meta_hksj.csv, joint_paired.csv,
 screening.csv, modification_sensitivity.csv, nvis_class_sensitivity.csv, verdict.json}.
-Surrogates are rounded to 6 d.p. (config.load_polygons) — constant-after-rounding = non-estimable.
+Surrogates are rounded to 4 d.p. (config.load_polygons) — constant-after-rounding = non-estimable.
 """
 import os, sys, json, warnings
 import numpy as np, pandas as pd
-from scipy.stats import rankdata, norm, t as tdist
+from scipy.stats import rankdata, norm, kendalltau, t as tdist
 warnings.filterwarnings("ignore")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config as C
@@ -130,6 +130,12 @@ def meta(ys, vs):
 
 def z(r): return np.arctanh(np.clip(r, -0.999, 0.999))
 
+def meta_auc(aucs, variances):
+    """pool AUCs on the logit scale (delta-method variances) so intervals stay inside (0, 1)."""
+    a = np.clip(np.asarray(aucs, float), 1e-3, 1 - 1e-3); v = np.asarray(variances, float)
+    m = meta(np.log(a / (1 - a)), v / (a * (1 - a)) ** 2)
+    return back(m, lambda x: 1 / (1 + np.exp(-x)))
+
 def back(m, f):
     """back-transform a meta dict's estimate/limits with f (tanh for Fisher z)."""
     o = dict(m)
@@ -145,9 +151,11 @@ def partial_rank(sub, idx):
     return np.corrcoef(rx, ry)[0, 1]
 
 # ---------------------------------------------------------------------------- R1 + R4
-def per_catchment_z(D, rng, exclude_class1=False):
+def per_catchment_z(D, rng, exclude_class1=False, catchments=None):
+    """per-catchment rho + block-bootstrap Fisher-z variance. E-AREA uses area-weighted mid-ranks
+    (weighted ECDF; wspear_ecdf), which replaces P3's unweighted-rank weighted Pearson."""
     rows = []
-    for name in C.BIORISK_POOL:
+    for name in (catchments or C.BIORISK_POOL):
         d = D[D.catchment == name]
         if exclude_class1: d = d[d.biorisk_awm > 1]
         for s in SURR:
@@ -156,9 +164,10 @@ def per_catchment_z(D, rng, exclude_class1=False):
                 sub = d[[s, "biorisk_awm", "unit_km2", "tile"]].dropna()
                 if len(sub) < 6 or sub[s].nunique() < 2 or sub.biorisk_awm.nunique() < 2: continue
                 x, y = sub[s].values, sub.biorisk_awm.values
-                w = sub.unit_km2.values if wtd else None
-                obs = wspear(x, y, w)
-                bs = block_boot(lambda i: wspear(x[i], y[i], None if w is None else w[i]), sub.tile.values, rng)
+                w = sub.unit_km2.values
+                fn = (lambda i: wspear_ecdf(x[i], y[i], w[i])) if wtd else (lambda i: wspear(x[i], y[i]))
+                obs = fn(np.arange(len(sub)))
+                bs = block_boot(fn, sub.tile.values, rng)
                 rows.append(dict(catchment=name, quantity=s, estimand=est, rho=obs, z=z(obs),
                                  z_var=float(np.var(z(bs))) if len(bs) > 10 else np.nan,
                                  n=len(sub), n_tiles=sub.tile.nunique()))
@@ -176,8 +185,11 @@ def pool_z(per):
     out = []
     for (q, est), g in per.groupby(["quantity", "estimand"], sort=False):
         m = back(meta(g.z.values, g.z_var.values), np.tanh)
-        used = g[np.isfinite(g.z_var) & (g.z_var > 0)].catchment.tolist()
-        out.append(dict(quantity=q, estimand=est, **m, catchments=";".join(used)))
+        ok = g[np.isfinite(g.z_var) & (g.z_var > 0)]
+        loo = [float(np.tanh(meta(ok.z.drop(i).values, ok.z_var.drop(i).values)["est"]))
+               for i in ok.index] if len(ok) >= 3 else []
+        out.append(dict(quantity=q, estimand=est, **m, catchments=";".join(ok.catchment),
+                        loo_min=min(loo) if loo else np.nan, loo_max=max(loo) if loo else np.nan))
     return pd.DataFrame(out)
 
 # ---------------------------------------------------------------------------- R2
@@ -269,7 +281,7 @@ def screening(DA, rng):
     per = pd.DataFrame(rows)
     pooled = []
     for (s, thr), g in per[per.catchment != "Weddell"].groupby(["surrogate", "threshold"], sort=False):
-        m = meta(g.auc.values, g.auc_var.values)
+        m = meta_auc(g.auc.values, g.auc_var.values)
         pooled.append(dict(surrogate=s, threshold=thr, **m, mean_enrichment=g.capture_enrichment_top20.mean()))
     return per, pd.DataFrame(pooled)
 
@@ -313,6 +325,7 @@ METRICS = {  # name -> f(x, y, w) ; every metric is "higher = surrogate agrees m
     "spearman_area": lambda x, y, w: wspear_ecdf(x, y, w),
     "auc_ge4":       lambda x, y, w: auc(x, y >= HIGH),
     "auc_eq5":       lambda x, y, w: auc(x, y == 5),
+    "kendall_tau_b": lambda x, y, w: kendalltau(x, y).statistic,
 }
 MMU_HA = [0, 0.1, 1.0]   # minimum polygon size (ha): none; 0.1 ha; one 100 m NVIS pixel
 B_MV = 500
@@ -350,7 +363,8 @@ def multiverse(D, rng):
                 spec = dict(metric=metric, mmu_ha=mmu, exclude_class1=ex1)
                 P = pd.DataFrame(per, columns=["s", "c", "e", "v"])
                 for s, g in P.groupby("s"):
-                    m = meta(g.e.values, g.v.values)
+                    m = (meta_auc(g.e.values, g.v.values) if metric.startswith("auc")
+                         else back(meta(z(g.e.values), g.v.values / (1 - np.clip(g.e.values, -0.999, 0.999) ** 2) ** 2), np.tanh))
                     rows.append(dict(spec, surrogate=s, est=m["est"], lo=m["mhk_lo"], hi=m["mhk_hi"], k=m["k"]))
                 Dd = pd.DataFrame(dper, columns=["c", "e", "v"])
                 m = meta(Dd.e.values, Dd.v.values)
@@ -363,6 +377,31 @@ def multiverse(D, rng):
             [["metric", "mmu_ha", "exclude_class1", "best_surrogate", "best_est"]])
     dv = dv.merge(best, on=["metric", "mmu_ha", "exclude_class1"], how="left")
     return mv, dv
+
+def mmu_table(DA):
+    """per-catchment E-UNIT Spearman of each surrogate as small polygons are removed (no bootstrap)."""
+    rows = []
+    for name in C.BIORISK_POOL + ["Weddell"]:
+        for mmu in [0, 0.01, 0.1, 0.5, 1.0, 5.0]:
+            d = DA[(DA.catchment == name) & (DA.unit_km2 * 100 >= mmu)]
+            for s in SURR:
+                sub = d[[s, "biorisk_awm"]].dropna()
+                ok = len(sub) >= 6 and sub[s].nunique() > 1 and sub.biorisk_awm.nunique() > 1
+                rows.append(dict(catchment=name, mmu_ha=mmu, surrogate=s, n=len(sub),
+                                 rho=wspear(sub[s].values, sub.biorisk_awm.values) if ok else np.nan))
+    return pd.DataFrame(rows)
+
+def benchmark_table(DA):
+    """Table 1 inputs: polygons, area, class counts, polygon-size distribution, 10 km tiles."""
+    rows = []
+    for name in C.BIORISK_POOL + ["Weddell"]:
+        d = DA[DA.catchment == name]; a_ha = d.unit_km2 * 100
+        cls = d.biorisk_awm.value_counts().sort_index()
+        rows.append(dict(catchment=name, n_polygons=len(d), area_km2=d.unit_km2.sum(),
+                         classes=", ".join(f"{int(k)}:{v}" for k, v in cls.items()),
+                         median_polygon_ha=a_ha.median(), pct_lt_1ha=100 * (a_ha < 1).mean(),
+                         n_tiles_10km=d.tile.nunique()))
+    return pd.DataFrame(rows)
 
 def spec_curve(dv, path):
     """specification curve: paired NVIS - land-system difference across all specifications."""
@@ -387,6 +426,10 @@ def main():
     DA = load_pool(); D = DA[DA.pool].reset_index(drop=True)
     rng = np.random.default_rng(SEED)
     per = per_catchment_z(D, rng); pooled = pool_z(per)
+    per_wed = per_catchment_z(DA, rng, catchments=["Weddell"])   # separate scheme: never pooled
+    per_wed.to_csv(os.path.join(OUT, "weddell.csv"), index=False)
+    mmu_table(DA).to_csv(os.path.join(OUT, "mmu_per_catchment.csv"), index=False)
+    benchmark_table(DA).to_csv(os.path.join(OUT, "benchmarks.csv"), index=False)
     per_nc1 = per_catchment_z(D, rng, exclude_class1=True); pooled_nc1 = pool_z(per_nc1)
     joint, loco = paired_joint(D, rng)
     scr_per, scr_pool = screening(DA, rng)
@@ -399,18 +442,23 @@ def main():
     per.to_csv(os.path.join(OUT, "per_catchment_z.csv"), index=False)
     pooled.to_csv(os.path.join(OUT, "meta_hksj.csv"), index=False)
     pooled_nc1.to_csv(os.path.join(OUT, "modification_sensitivity.csv"), index=False)
+    per_nc1.to_csv(os.path.join(OUT, "modification_per_catchment.csv"), index=False)
+    pd.DataFrame([dict(catchment=c, **v) for c, v in loco.items()]).to_csv(os.path.join(OUT, "loco.csv"), index=False)
     joint.to_csv(os.path.join(OUT, "joint_paired.csv"), index=False)
     scr_per.to_csv(os.path.join(OUT, "screening.csv"), index=False)
     mvg.to_csv(os.path.join(OUT, "nvis_class_sensitivity.csv"), index=False)
 
     f = lambda v: f"{v:+.3f}" if np.isfinite(v) else "  n/a "
-    L = ["P4 REVISION ANALYSES (pre-submission panel review)",
+    L = ["P4 REVISION ANALYSES (pre-submission audit)",
          f"tiles={TILE_M//1000} km, B={B}, CV repeats={R_CV}x{K_FOLD}-fold, seed={SEED}", "",
          "R1  POOLED rho: DL (as P3) vs HKSJ vs modified-HKSJ 95% CI, k = estimable catchments",
-         f"  {'quantity':16s} {'est':6s} {'rho':>7s} {'DL CI':>17s} {'HKSJ CI':>17s} {'mHKSJ CI':>17s} {'p_mHK':>6s} {'I2':>4s} k"]
+         f"  {'quantity':16s} {'est':6s} {'rho':>7s} {'DL CI':>17s} {'HKSJ CI':>17s} {'mHKSJ CI':>17s} {'p_mHK':>6s} {'I2':>4s} k  LOO range"]
     for _, r in pooled.iterrows():
         L.append(f"  {r.quantity:16s} {r.estimand:6s} {f(r.est)} [{f(r.dl_lo)},{f(r.dl_hi)}] "
-                 f"[{f(r.hk_lo)},{f(r.hk_hi)}] [{f(r.mhk_lo)},{f(r.mhk_hi)}] {r.mhk_p:6.3f} {r.I2:4.0f} {r.k}  ({r.catchments})")
+                 f"[{f(r.hk_lo)},{f(r.hk_hi)}] [{f(r.mhk_lo)},{f(r.mhk_hi)}] {r.mhk_p:6.3f} {r.I2:4.0f} {r.k}  "
+                 f"[{f(r.loo_min)},{f(r.loo_max)}]  ({r.catchments})")
+    L += ["  Weddell (BioValues scheme, separate): " + "  ".join(
+          f"{r.quantity}/{r.estimand}={f(r.rho)}" for _, r in per_wed.iterrows())]
     L += ["", "R4  MODIFICATION SENSITIVITY: E-UNIT excluding BIORISK class 1 (nil/highly modified)"]
     for _, r in pooled_nc1.iterrows():
         L.append(f"  {r.quantity:16s} {f(r.est)} DL[{f(r.dl_lo)},{f(r.dl_hi)}] mHKSJ[{f(r.mhk_lo)},{f(r.mhk_hi)}] k={r.k}")

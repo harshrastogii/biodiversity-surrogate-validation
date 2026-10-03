@@ -65,13 +65,14 @@ DEA_DIR = os.path.join(RAW, "surrogates", "DEA")
 def dea_tif(catchment):
     return os.path.join(DEA_DIR, f"dea_vegcover_{catchment}.tif")
 
-# ---- analysis-ready polygon table (panel-review fix, P4) ----------------------
+# ---- analysis-ready polygon table (P4 audit fix) ----------------------
 # Area-weighted overlays leave floating-point residue (e.g. Wadeye convertibility is constant
 # at 0.1 but stored as 0.0999999999999999/0.1/0.1000000000000002; Deep Well NVIS rarity varies
 # only at ~1e-6). Ranking that residue manufactures spurious correlations, so every surrogate
-# is rounded to 6 d.p. before analysis; a surrogate constant after rounding is non-estimable.
+# is rounded to 4 d.p. (differences < 1e-4 on a 0-1 score are overlay residue) before analysis;
+# a surrogate constant after rounding is non-estimable.
 SURR_COLS = ["sig_landsys", "sig_nvis_mvg", "cond_dea", "convertibility", "protection", "iucn_frac"]
-SURR_DECIMALS = 6
+SURR_DECIMALS = 4
 def load_polygons():
     import pandas as pd
     poly = pd.read_parquet(os.path.join(PROC, "harmonized_polygon.parquet"))

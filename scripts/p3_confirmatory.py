@@ -153,15 +153,15 @@ for s in SURR:
 
 # ---- co-primary verdict per surrogate -------------------------------------
 def verdict(s):
+    """P3.PR1 intersection-union table; a CI wholly below 0 counts as 'negative', not 'null'."""
     u = meta[(meta.surrogate == s) & (meta.estimand == "E-UNIT")].iloc[0]
     a = meta[(meta.surrogate == s) & (meta.estimand == "E-AREA")].iloc[0]
-    up = u.ci_lo > 0; un = u.ci_hi < 0; an = a.ci_hi < 0; ap = a.ci_lo > 0
-    uu = (not up and not un); au = (not ap and not an)
-    if up and ap: return "VALIDATED (both estimands +)"
-    if uu and au: return "NOT VALIDATED (both null)"
-    if up and not ap: return "ESTIMAND-DEPENDENT (per-unit + / area not)"
-    if ap and not up: return "ESTIMAND-DEPENDENT (area + / per-unit not)"
-    return "MIXED/weak"
+    def sign(r): return "+" if r.ci_lo > 0 else ("-" if r.ci_hi < 0 else "0")
+    su, sa = sign(u), sign(a)
+    if su == "+" and sa == "+": return "VALIDATED (both estimands +)"
+    if su == "0" and sa == "0": return "NOT VALIDATED (both null)"
+    if "-" in (su, sa): return f"NEGATIVE under at least one estimand (E-UNIT {su} / E-AREA {sa})"
+    return f"ESTIMAND-DEPENDENT (E-UNIT {su} / E-AREA {sa})"
 
 # ---- report ---------------------------------------------------------------
 L = ["P3 CONFIRMATORY — surrogate validation (pre-registered P3.PR1/PR2)",
