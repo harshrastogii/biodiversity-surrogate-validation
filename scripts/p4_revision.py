@@ -502,6 +502,10 @@ def main():
                    nvis_class_sensitivity=mvg.to_dict("records"),
                    multiverse=dv.to_dict("records")),
               open(os.path.join(OUT, "verdict.json"), "w"), indent=2, default=float)
+    # R4 for Greater Weddell (separate scheme, never pooled). Own generator, so every result above
+    # is unchanged by this addition.
+    per_catchment_z(DA, np.random.default_rng(SEED + 1), exclude_class1=True, catchments=["Weddell"]) \
+        .to_csv(os.path.join(OUT, "modification_weddell.csv"), index=False)
     print("\nwrote", OUT)
 
 if __name__ == "__main__":

@@ -1,0 +1,120 @@
+P4 REVISION ANALYSES (pre-submission audit)
+tiles=10 km, B=2000, CV repeats=20x10-fold, seed=42
+
+R1  POOLED rho: DL (as P3) vs HKSJ vs modified-HKSJ 95% CI, k = estimable catchments
+  quantity         est        rho             DL CI           HKSJ CI          mHKSJ CI  p_mHK   I2 k  LOO range
+  sig_landsys      E-UNIT +0.092 [+0.031,+0.152] [+0.030,+0.153] [-0.008,+0.189]  0.060    0 4  [+0.076,+0.118]  (Roper;Larrimah;Wadeye;GunnPoint)
+  sig_landsys      E-AREA +0.262 [+0.080,+0.427] [+0.017,+0.477] [-0.037,+0.518]  0.068    0 4  [+0.228,+0.305]  (Roper;Larrimah;Wadeye;GunnPoint)
+  sig_nvis_mvg     E-UNIT +0.231 [+0.147,+0.312] [+0.083,+0.369] [+0.083,+0.369]  0.016   18 4  [+0.216,+0.279]  (Roper;Larrimah;Wadeye;GunnPoint)
+  sig_nvis_mvg     E-AREA +0.245 [-0.350,+0.700] [-0.504,+0.784] [-0.635,+0.848]  0.484   90 4  [+0.067,+0.538]  (Roper;Larrimah;Wadeye;GunnPoint)
+  cond_dea         E-UNIT +0.091 [-0.069,+0.248] [-0.100,+0.276] [-0.168,+0.339]  0.346   81 4  [+0.008,+0.191]  (Roper;Larrimah;Wadeye;GunnPoint)
+  cond_dea         E-AREA -0.088 [-0.239,+0.067] [-0.182,+0.007] [-0.328,+0.163]  0.346    0 4  [-0.106,-0.069]  (Roper;Larrimah;Wadeye;GunnPoint)
+  convertibility   E-UNIT +0.049 [-0.176,+0.269] [-0.351,+0.434] [-0.421,+0.499]  0.712   63 3  [-0.075,+0.194]  (Roper;Larrimah;GunnPoint)
+  convertibility   E-AREA +0.049 [-0.152,+0.246] [-0.124,+0.219] [-0.376,+0.457]  0.681    0 3  [-0.046,+0.078]  (Roper;Larrimah;GunnPoint)
+  protection       E-UNIT -0.017 [-0.051,+0.018] [-0.032,-0.001] [-0.235,+0.204]  0.520    0 2  [  n/a ,  n/a ]  (Roper;GunnPoint)
+  protection       E-AREA -0.236 [-0.444,-0.003] [-0.908,+0.777] [-0.944,+0.861]  0.297    0 2  [  n/a ,  n/a ]  (Roper;GunnPoint)
+  nvis_partial     E-UNIT +0.168 [+0.075,+0.259] [-0.022,+0.347] [-0.022,+0.347]  0.067   49 4  [+0.137,+0.241]  (Roper;Larrimah;Wadeye;GunnPoint)
+  Weddell (BioValues scheme, separate): sig_landsys/E-UNIT=-0.096  sig_landsys/E-AREA=-0.123  sig_nvis_mvg/E-UNIT=+0.233  sig_nvis_mvg/E-AREA=+0.434  cond_dea/E-UNIT=-0.033  cond_dea/E-AREA=+0.114  convertibility/E-UNIT=+0.197  convertibility/E-AREA=+0.127  protection/E-UNIT=+0.076  protection/E-AREA=+0.063  nvis_partial/E-UNIT=+0.013
+
+R4  MODIFICATION SENSITIVITY: E-UNIT excluding BIORISK class 1 (nil/highly modified)
+  sig_landsys      +0.088 DL[+0.025,+0.149] mHKSJ[-0.013,+0.187] k=4
+  sig_nvis_mvg     +0.220 DL[+0.128,+0.307] mHKSJ[+0.057,+0.371] k=4
+  cond_dea         +0.076 DL[-0.080,+0.228] mHKSJ[-0.176,+0.318] k=4
+  convertibility   +0.021 DL[-0.238,+0.277] mHKSJ[-0.506,+0.537] k=3
+  protection       -0.015 DL[-0.047,+0.018] mHKSJ[-0.222,+0.193] k=2
+
+R2  JOINT vs NVIS — same rows, same folds, paired tile bootstrap (stratified by catchment)
+  pooled  CORE_joint                 +0.196 [+0.067,+0.301] n=21655
+  pooled  sig_nvis_mvg               +0.015 [-0.066,+0.158] n=21655
+  pooled  convertibility             -0.014 [-0.188,+0.179] n=21655
+  pooled  sig_landsys                +0.116 [+0.002,+0.192] n=21655
+  pooled  DELTA joint-NVIS (paired)  +0.181 [+0.045,+0.295] n=21655  P(Δ<=0)=0.001
+  within  CORE_joint                 +0.230 [+0.096,+0.374] n=21655
+  within  sig_nvis_mvg               +0.155 [+0.049,+0.287] n=21655
+  within  convertibility             -0.022 [-0.178,+0.183] n=21655
+  within  sig_landsys                +0.109 [-0.009,+0.253] n=21655
+  within  DELTA joint-NVIS (paired)  +0.076 [-0.085,+0.229] n=21655  P(Δ<=0)=0.188
+  LOCO (joint weights transferred to a held-out catchment) vs NVIS raw within-catchment rho:
+    Roper      joint=+0.168  nvis_raw=+0.163  n=2251
+    Larrimah   joint=+0.307  nvis_raw=+0.104  n=18
+    Wadeye     joint=+0.519  nvis_raw=+0.503  n=226
+    GunnPoint  joint=+0.244  nvis_raw=+0.168  n=19154
+    DeepWell   joint=+0.000  nvis_raw=+0.000  n=6
+
+R3  SCREENING: threshold-specific AUC (E-UNIT; RE meta over BIORISK pool) and top-20%-area capture enrichment (1 = random)
+  sig_landsys      >=4 AUC=0.531 DL[0.486,0.576] mHKSJ[0.458,0.603] k=4  mean enrichment=2.19
+  sig_landsys      ==5 AUC=0.662 DL[0.576,0.739] mHKSJ[0.467,0.815] k=3  mean enrichment=3.49
+  sig_nvis_mvg     >=4 AUC=0.667 DL[0.604,0.725] mHKSJ[0.559,0.760] k=4  mean enrichment=1.54
+  sig_nvis_mvg     ==5 AUC=0.736 DL[0.392,0.923] mHKSJ[0.101,0.986] k=3  mean enrichment=3.18
+  cond_dea         >=4 AUC=0.546 DL[0.396,0.689] mHKSJ[0.309,0.764] k=4  mean enrichment=1.49
+  cond_dea         ==5 AUC=0.618 DL[0.523,0.706] mHKSJ[0.407,0.793] k=3  mean enrichment=2.95
+  convertibility   >=4 AUC=0.521 DL[0.411,0.629] mHKSJ[0.291,0.742] k=3  mean enrichment=1.79
+  convertibility   ==5 AUC=0.423 DL[0.162,0.735] mHKSJ[0.000,1.000] k=2  mean enrichment=1.29
+  protection       >=4 AUC=0.497 DL[0.485,0.509] mHKSJ[0.420,0.574] k=2  mean enrichment=0.58
+  protection       ==5 AUC=0.481 DL[0.462,0.500] mHKSJ[0.359,0.605] k=2  mean enrichment=0.07
+  per catchment, AUC>=4 / AUC==5 / enrichment(>=4)   [Weddell = separate scheme, not pooled]:
+    Roper      land:0.55/0.66/1.57  mvg:0.63/0.85/0.74  dea:0.64/0.69/1.07  conv:0.46/0.28/1.78  prot:0.50/0.48/0.56
+    Larrimah   land:0.47/n/a/4.86  mvg:0.56/n/a/0.67  dea:0.62/n/a/2.82  conv:0.66/n/a/1.59
+    Wadeye     land:0.53/0.51/2.01  mvg:0.81/0.83/2.84  dea:0.56/0.57/1.42
+    GunnPoint  land:0.50/0.69/1.55  mvg:0.69/0.46/2.09  dea:0.40/0.57/1.71  conv:0.58/0.60/2.00  prot:0.50/0.48/0.59
+    DeepWell   land:0.38/n/a/0.96  mvg:0.62/n/a/1.35  dea:0.75/n/a/0.40
+    Weddell    land:0.38/0.61/0.59  mvg:0.66/0.47/3.23  dea:0.41/0.55/0.66  conv:0.55/0.60/0.85  prot:0.52/0.48/1.06
+
+R5  NVIS CLASS SENSITIVITY (E-UNIT Spearman; is the signal carried by a few rare MVGs?)
+  Roper      drop none                                          n_dropped=     0  rho=+0.218
+  Roper      drop rarity=0.319 (share BIORISK>=4: 0.90)         n_dropped=   206  rho=+0.207
+  Roper      drop rarity=0.420 (share BIORISK>=4: 0.96)         n_dropped=    70  rho=+0.214
+  Roper      drop all rarity>=0.25                              n_dropped=   928  rho=+0.127
+  Larrimah   drop none                                          n_dropped=     0  rho=+0.064
+  Larrimah   drop all rarity>=0.25                              n_dropped=     2  rho=+0.000
+  Wadeye     drop none                                          n_dropped=     0  rho=+0.512
+  Wadeye     drop rarity=0.262 (share BIORISK>=4: 0.99)         n_dropped=    77  rho=+0.520
+  Wadeye     drop rarity=0.477 (share BIORISK>=4: 1.00)         n_dropped=     7  rho=+0.509
+  Wadeye     drop all rarity>=0.25                              n_dropped=   189  rho=+0.582
+  GunnPoint  drop none                                          n_dropped=     0  rho=+0.217
+  GunnPoint  drop rarity=0.477 (share BIORISK>=4: 1.00)         n_dropped=  1668  rho=+0.199
+  GunnPoint  drop rarity=0.383 (share BIORISK>=4: 0.74)         n_dropped=  1454  rho=+0.219
+  GunnPoint  drop rarity=0.517 (share BIORISK>=4: 0.94)         n_dropped=  1181  rho=+0.179
+  GunnPoint  drop rarity=0.319 (share BIORISK>=4: 0.85)         n_dropped=   650  rho=+0.206
+  GunnPoint  drop rarity=0.262 (share BIORISK>=4: 1.00)         n_dropped=   284  rho=+0.214
+  GunnPoint  drop all rarity>=0.25                              n_dropped=  7421  rho=-0.043
+  DeepWell   drop none                                          n_dropped=     0  rho=+0.000
+  DeepWell   drop all rarity>=0.25                              n_dropped=     0  rho=+0.000
+  Weddell    drop none                                          n_dropped=     0  rho=+0.233
+  Weddell    drop rarity=0.477 (share BIORISK>=4: 0.98)         n_dropped=  1537  rho=+0.068
+  Weddell    drop all rarity>=0.25                              n_dropped=  2828  rho=-0.034
+
+R6  MULTIVERSE / SPECIFICATION CURVE: metric x minimum mapping unit x exclude BIORISK-1
+  30 specifications. Paired NVIS - land-system difference (pooled, mHKSJ CI) and best surrogate:
+  spearman_unit  mmu=0.0  ex1=False diff=+0.208 [-0.092,+0.509] k=4  best=sig_nvis_mvg (+0.229)
+  spearman_unit  mmu=0.0  ex1=True  diff=+0.206 [-0.119,+0.530] k=4  best=sig_nvis_mvg (+0.214)
+  spearman_unit  mmu=0.1  ex1=False diff=+0.186 [-0.170,+0.542] k=4  best=sig_nvis_mvg (+0.226)
+  spearman_unit  mmu=0.1  ex1=True  diff=+0.167 [-0.205,+0.540] k=4  best=sig_nvis_mvg (+0.210)
+  spearman_unit  mmu=1.0  ex1=False diff=+0.123 [-0.206,+0.452] k=4  best=sig_nvis_mvg (+0.255)
+  spearman_unit  mmu=1.0  ex1=True  diff=+0.106 [-0.237,+0.449] k=4  best=sig_nvis_mvg (+0.240)
+  spearman_area  mmu=0.0  ex1=False diff=-0.100 [-1.081,+0.881] k=4  best=sig_landsys (+0.259)
+  spearman_area  mmu=0.0  ex1=True  diff=-0.120 [-1.109,+0.870] k=4  best=sig_landsys (+0.266)
+  spearman_area  mmu=0.1  ex1=False diff=-0.108 [-1.101,+0.885] k=4  best=sig_landsys (+0.258)
+  spearman_area  mmu=0.1  ex1=True  diff=-0.116 [-1.093,+0.861] k=4  best=sig_landsys (+0.275)
+  spearman_area  mmu=1.0  ex1=False diff=-0.109 [-1.117,+0.899] k=4  best=sig_landsys (+0.270)
+  spearman_area  mmu=1.0  ex1=True  diff=-0.126 [-1.102,+0.850] k=4  best=sig_landsys (+0.272)
+  auc_ge4        mmu=0.0  ex1=False diff=+0.158 [-0.003,+0.320] k=4  best=sig_nvis_mvg (+0.667)
+  auc_ge4        mmu=0.0  ex1=True  diff=+0.162 [-0.023,+0.346] k=4  best=sig_nvis_mvg (+0.660)
+  auc_ge4        mmu=0.1  ex1=False diff=+0.216 [-0.051,+0.482] k=4  best=sig_nvis_mvg (+0.728)
+  auc_ge4        mmu=0.1  ex1=True  diff=+0.215 [-0.079,+0.508] k=4  best=sig_nvis_mvg (+0.720)
+  auc_ge4        mmu=1.0  ex1=False diff=+0.120 [+0.019,+0.220] k=4  best=sig_nvis_mvg (+0.733)
+  auc_ge4        mmu=1.0  ex1=True  diff=+0.130 [-0.022,+0.282] k=4  best=sig_nvis_mvg (+0.728)
+  auc_eq5        mmu=0.0  ex1=False diff=+0.095 [-0.794,+0.983] k=3  best=sig_nvis_mvg (+0.736)
+  auc_eq5        mmu=0.0  ex1=True  diff=+0.094 [-0.788,+0.976] k=3  best=sig_nvis_mvg (+0.734)
+  auc_eq5        mmu=0.1  ex1=False diff=-0.003 [-1.218,+1.213] k=3  best=sig_nvis_mvg (+0.705)
+  auc_eq5        mmu=0.1  ex1=True  diff=-0.006 [-1.259,+1.248] k=3  best=sig_landsys (+0.708)
+  auc_eq5        mmu=1.0  ex1=False diff=-0.031 [-1.180,+1.118] k=3  best=sig_landsys (+0.739)
+  auc_eq5        mmu=1.0  ex1=True  diff=-0.032 [-1.174,+1.110] k=3  best=sig_landsys (+0.737)
+  kendall_tau_b  mmu=0.0  ex1=False diff=+0.171 [-0.068,+0.410] k=4  best=sig_nvis_mvg (+0.192)
+  kendall_tau_b  mmu=0.0  ex1=True  diff=+0.164 [-0.087,+0.415] k=4  best=sig_nvis_mvg (+0.187)
+  kendall_tau_b  mmu=0.1  ex1=False diff=+0.148 [-0.143,+0.439] k=4  best=sig_nvis_mvg (+0.189)
+  kendall_tau_b  mmu=0.1  ex1=True  diff=+0.127 [-0.175,+0.429] k=4  best=sig_nvis_mvg (+0.176)
+  kendall_tau_b  mmu=1.0  ex1=False diff=+0.093 [-0.189,+0.375] k=4  best=sig_nvis_mvg (+0.209)
+  kendall_tau_b  mmu=1.0  ex1=True  diff=+0.075 [-0.211,+0.361] k=4  best=sig_nvis_mvg (+0.209)
+  SUMMARY: NVIS significantly better in 1/30; land-system significantly better in 0/30; inconclusive in 29/30.
+  best surrogate by specification: sig_nvis_mvg=21, sig_landsys=9

@@ -67,8 +67,8 @@ def fig1():
     for name in C.BENCHMARKS:
         b = C.BENCHMARKS[name]; g = gpd.read_file(b["path"], layer=b["layer"]).to_crs(C.CRS)
         g["geometry"] = make_valid(g.geometry); foot[name] = g.union_all()
-    LP = {"Roper": (70000, 70000, "left"), "Larrimah": (70000, -80000, "left"),
-          "Wadeye": (-60000, 0, "right"), "GunnPoint": (30000, 140000, "left"),
+    LP = {"Roper": (200000, -250000, "left"), "Larrimah": (70000, -80000, "left"),
+          "Wadeye": (-60000, 0, "right"), "GunnPoint": (-60000, 120000, "right"),
           "Weddell": (150000, -30000, "left"), "DeepWell": (70000, 0, "left")}
     fig = plt.figure(figsize=(174 * MM, 96 * MM))
     gs = fig.add_gridspec(1, 2, width_ratios=[1.0, 1.05], wspace=0.35)
@@ -121,32 +121,44 @@ def fig1():
 
 # ===================================================================================== Figure 2
 def fig2():
-    mv = read("multiverse_surrogates.csv")
-    base = mv[(mv.mmu_ha == 0) & (~mv.exclude_class1)]
+    """Same estimates as Table 2: correlations from meta_hksj.csv (B = 2,000), AUCs pooled from
+    screening.csv with the analysis's own meta_auc. Bars are modified-HKSJ intervals."""
+    from p4_revision import meta_auc
+    mh, scr = read("meta_hksj.csv"), read("screening.csv")
+    def est(s, m):
+        if m in ("spearman_unit", "spearman_area"):
+            r = mh[(mh.quantity == s) & (mh.estimand == ("E-UNIT" if m == "spearman_unit" else "E-AREA"))]
+            return None if not len(r) else (r.est.iloc[0], r.mhk_lo.iloc[0], r.mhk_hi.iloc[0])
+        g = scr[(scr.surrogate == s) & (scr.threshold == (">=4" if m == "auc_ge4" else "==5"))
+                & (scr.catchment != "Weddell")].dropna(subset=["auc", "auc_var"])
+        if not len(g): return None
+        mm = meta_auc(g.auc.values, g.auc_var.values); return (mm["est"], mm["mhk_lo"], mm["mhk_hi"])
     metrics = ["spearman_unit", "spearman_area", "auc_ge4", "auc_eq5"]
     fig, axes = plt.subplots(1, 4, figsize=(174 * MM, 64 * MM), sharey=True)
     yy = np.arange(len(SUR))[::-1]
     for j, (ax, m) in enumerate(zip(axes, metrics)):
         null = 0.5 if m.startswith("auc") else 0.0
+        lim = (0.0, 1.0) if m.startswith("auc") else (-0.6, 0.8)
         ax.axvline(null, color=RULE, lw=0.8, zorder=0)
-        d = base[base.metric == m].set_index("surrogate")
+        vals = {s: est(s, m) for s in SUR}
         for y, s in zip(yy, SUR):
-            if s not in d.index:
+            if vals[s] is None:
                 ax.text(null, y, "n.e.", ha="center", va="center", fontsize=6.5, color=MUTED); continue
-            r = d.loc[s]
-            ax.plot([r.lo, r.hi], [y, y], color=SUR_COL[s], lw=1.6, solid_capstyle="round")
-            ax.scatter([r.est], [y], s=30, color=SUR_COL[s], edgecolor="white", linewidth=0.8, zorder=3)
-        best = d.loc[[s for s in d.index if s != "protection"], "est"].idxmax()
-        ax.scatter([d.loc[best, "est"]], [yy[SUR.index(best)]], s=90, facecolor="none",
-                   edgecolor=INK, linewidth=0.8, zorder=4)
-        ax.set_xlabel(METRIC_LAB[m], fontsize=7.5)
-        if m.startswith("auc"): ax.set_xlim(0.3, 0.9)
-        else: ax.set_xlim(-0.45, 0.65)
+            e, lo, hi = vals[s]
+            ax.plot([max(lo, lim[0]), min(hi, lim[1])], [y, y], color=SUR_COL[s], lw=1.6, solid_capstyle="round")
+            for end, mk in [(lo < lim[0], "<"), (hi > lim[1], ">")]:
+                if end:
+                    ax.plot([lim[0] if mk == "<" else lim[1]], [y], marker=mk, ms=4, color=SUR_COL[s], clip_on=False)
+            ax.scatter([e], [y], s=30, color=SUR_COL[s], edgecolor="white", linewidth=0.8, zorder=3)
+        cand = {s: v[0] for s, v in vals.items() if v is not None and s != "protection"}
+        best = max(cand, key=cand.get)
+        ax.scatter([cand[best]], [yy[SUR.index(best)]], s=90, facecolor="none", edgecolor=INK, linewidth=0.8, zorder=4)
+        ax.set_xlabel(METRIC_LAB[m], fontsize=7.5); ax.set_xlim(*lim)
         panel(ax, "abcd"[j], "")
     axes[0].set_yticks(yy); axes[0].set_yticklabels([SUR_NAME[s] for s in SUR])
-    fig.text(0.5, -0.14, "Points: pooled estimate over the BIORISK catchments; bars: modified-HKSJ 95% CI; "
-             "ring: highest-scoring candidate surrogate under that metric. n.e. = not estimable.",
-             ha="center", fontsize=6.6, color=MUTED)
+    fig.text(0.5, -0.14, "Points: pooled estimate over the BIORISK catchments; bars: modified-HKSJ 95% CI "
+             "(arrowheads: interval continues beyond the axis); ring: highest-scoring candidate surrogate. "
+             "n.e. = not estimable.", ha="center", fontsize=6.6, color=MUTED, wrap=True)
     save(fig, "Figure2_metric_dependence")
 
 # ===================================================================================== Figure 3
@@ -161,9 +173,10 @@ def fig3():
     a1.scatter(dv.index, dv.diff_nvis_minus_landsys, c=col, s=16, zorder=3, edgecolor="white", linewidth=0.5)
     a1.axhline(0, color=INK, lw=0.6)
     a1.set_ylabel("NVIS minus land-system\n(paired; modified-HKSJ 95% CI)")
-    a1.text(0.01, 0.97, f"NVIS better: {int(pos.sum())}   land-system better: {int(neg.sum())}   "
-            f"inconclusive: {int((~pos & ~neg).sum())}   (of {len(dv)} specifications)",
-            transform=a1.transAxes, va="top", fontsize=7, color=INK)
+    a1.set_title(f"NVIS better: {int(pos.sum())}   land-system better: {int(neg.sum())}   "
+                 f"inconclusive: {int((~pos & ~neg).sum())}   (of {len(dv)} specifications)",
+                 loc="left", fontsize=7, color=INK)
+    pad = 0.05 * (dv.hi.max() - dv.lo.min()); a1.set_ylim(dv.lo.min() - pad, dv.hi.max() + pad)
     choices = ([("metric", m, METRIC_LAB[m].replace("\n", " ")) for m in METRIC_LAB if m in dv.metric.unique()]
                + [("mmu_ha", v, f"polygons ≥ {v:g} ha" if v else "all polygons") for v in sorted(dv.mmu_ha.unique())]
                + [("exclude_class1", True, "class 1 excluded")])
@@ -192,7 +205,7 @@ def fig4():
     a.set_xscale("log"); a.set_xlim(1e-4, 1e6)
     a.set_xlabel("Polygon area (ha; values below 0.0001 shown at 0.0001)", fontsize=7.5)
     a.set_ylabel("Cumulative share of polygons")
-    a.legend(frameon=False, loc="upper left", fontsize=6.6); panel(a, "a", "Polygon size")
+    a.legend(frameon=False, loc="center right", fontsize=6.6); panel(a, "a", "Polygon size")
     # (b) per-polygon agreement as small polygons are removed (Gunn Point, Wadeye)
     for name, ls in [("GunnPoint", "-"), ("Wadeye", "--")]:
         for s in ["sig_nvis_mvg", "sig_landsys"]:
@@ -218,19 +231,21 @@ def fig4():
     c.set_ylabel("NVIS Spearman ρ, per polygon"); c.legend(frameon=False, loc="upper left", fontsize=6.6)
     panel(c, "c", "Removing rare vegetation groups")
     # (d) convertibility with and without already-modified land (class 1)
-    pool = ["Roper", "Larrimah", "GunnPoint"]
-    a0 = [mod_all[(mod_all.catchment == k) & (mod_all.quantity == "convertibility") & (mod_all.estimand == "E-UNIT")].rho
+    pool = ["Roper", "GunnPoint", "Weddell"]          # the areas with class 1 polygons
+    allc = pd.concat([mod_all, read("weddell.csv")]); nc1 = pd.concat([read("modification_per_catchment.csv"),
+                                                                        read("modification_weddell.csv")])
+    a0 = [allc[(allc.catchment == k) & (allc.quantity == "convertibility") & (allc.estimand == "E-UNIT")].rho
           for k in pool]
     a0 = [r.iloc[0] if len(r) else np.nan for r in a0]
-    nc1 = read("modification_per_catchment.csv")
-    a1 = [nc1[(nc1.catchment == k) & (nc1.quantity == "convertibility")].rho for k in pool]
+    a1 = [nc1[(nc1.catchment == k) & (nc1.quantity == "convertibility") & (nc1.estimand == "E-UNIT")].rho for k in pool]
     a1 = [r.iloc[0] if len(r) else np.nan for r in a1]
     x = np.arange(len(pool))
     d.bar(x - w / 2 - 0.01, a0, w, color="#E69F00", label="all classes")
     d.bar(x + w / 2 + 0.01, a1, w, color="#E69F00", alpha=0.45, hatch="///", edgecolor="white",
           label="class 1 (already modified) removed")
-    d.axhline(0, color=INK, lw=0.6); d.set_xticks(x); d.set_xticklabels([CATCH_LAB[k] for k in pool])
-    d.set_ylim(0, 0.3)
+    d.axhline(0, color=INK, lw=0.6); d.set_xticks(x)
+    d.set_xticklabels([CATCH_LAB[k] if k != "Weddell" else "Greater\nWeddell" for k in pool])
+    d.set_ylim(min(-0.05, np.nanmin(a0 + a1) - 0.03), max(0.3, np.nanmax(a0 + a1) + 0.1))
     d.set_ylabel("Convertibility Spearman ρ, per polygon"); d.legend(frameon=False, loc="upper left", fontsize=6.6)
     panel(d, "d", "Removing already-modified land")
     fig.tight_layout(h_pad=2.2, w_pad=2.5)
@@ -262,7 +277,7 @@ def fig5():
                 b.text(i + dx, 0.01, "0", ha="center", va="bottom", fontsize=6.3, color=INK)
     b.set_ylim(min(0, np.nanmin(loco[["joint", "nvis_raw"]].values)) - 0.02, 0.75)
     b.axhline(0, color=INK, lw=0.6); b.set_xticks(x)
-    b.set_xticklabels([CATCH_LAB[c] for c in loco.catchment], rotation=20, ha="right")
+    b.set_xticklabels([CATCH_LAB[c] for c in loco.catchment], rotation=30, ha="right", rotation_mode="anchor")
     b.set_ylabel("Spearman ρ in held-out catchment"); b.legend(frameon=False, fontsize=6.6, loc="upper left")
     panel(b, "b", "Transfer to an unseen catchment")
     fig.tight_layout()

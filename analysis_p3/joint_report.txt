@@ -3,30 +3,30 @@ Out-of-sample Spearman(pred, expert BIORISK). Guards vs overfitting via block CV
 
 SPATIAL-BLOCK CV (hold out catchment x 10km tiles):
   model            est     test_rho           95% CI  train overfit_gap
-  CORE_joint       E-AREA    +0.172 [-0.01,+0.32]  +0.20      +0.026
-  FULL_joint       E-AREA    +0.123 [-0.06,+0.29]  +0.13      +0.007
-  cond_dea         E-AREA    +0.062 [-0.11,+0.22]  +0.06      -0.007
-  convertibility   E-AREA    +0.022 [-0.15,+0.16]  +0.09      +0.065
-  protection       E-AREA    +0.022 [-0.19,+0.20]  +0.18      +0.163
-  sig_landsys      E-AREA    +0.116 [-0.03,+0.26]  +0.22      +0.105
-  sig_nvis_mvg     E-AREA    +0.019 [-0.19,+0.26]  +0.25      +0.233
-  CORE_joint       E-UNIT    +0.218 [+0.08,+0.33]  +0.30      +0.083
-  FULL_joint       E-UNIT    +0.196 [+0.05,+0.31]  +0.28      +0.084
-  cond_dea         E-UNIT    +0.017 [-0.10,+0.13]  +0.04      +0.018
-  convertibility   E-UNIT    +0.061 [-0.11,+0.23]  +0.20      +0.137
-  protection       E-UNIT    -0.156 [-0.21,-0.00]  +0.02      +0.179
-  sig_landsys      E-UNIT    +0.066 [-0.04,+0.15]  +0.12      +0.058
-  sig_nvis_mvg     E-UNIT    +0.127 [+0.05,+0.26]  +0.22      +0.092
+  CORE_joint       E-AREA    +0.300 [+0.07,+0.48]  +0.32      +0.022
+  FULL_joint       E-AREA    +0.318 [+0.08,+0.51]  +0.30      -0.014
+  cond_dea         E-AREA    +0.117 [-0.08,+0.28]  +0.07      -0.046
+  convertibility   E-AREA    +0.051 [-0.22,+0.27]  +0.07      +0.023
+  protection       E-AREA    -0.051 [-0.29,+0.25]  +0.23      +0.282
+  sig_landsys      E-AREA    +0.328 [+0.13,+0.48]  +0.27      -0.063
+  sig_nvis_mvg     E-AREA    +0.031 [-0.26,+0.33]  +0.29      +0.257
+  CORE_joint       E-UNIT    +0.178 [+0.04,+0.29]  +0.31      +0.129
+  FULL_joint       E-UNIT    +0.235 [+0.12,+0.31]  +0.31      +0.071
+  cond_dea         E-UNIT    -0.121 [-0.20,+0.00]  -0.03      +0.093
+  convertibility   E-UNIT    +0.023 [-0.16,+0.19]  +0.17      +0.145
+  protection       E-UNIT    -0.224 [-0.26,-0.13]  +0.02      +0.247
+  sig_landsys      E-UNIT    +0.095 [-0.04,+0.18]  +0.14      +0.043
+  sig_nvis_mvg     E-UNIT    +0.103 [+0.02,+0.26]  +0.20      +0.097
 
 INCREMENTAL VALUE of combining (joint - best single), E-UNIT, block-bootstrap CI:
-  CORE_joint   vs best single (sig_nvis_mvg): Δrho=+0.074 [-0.109,+0.226]  -> inconclusive
-  FULL_joint   vs best single (sig_nvis_mvg): Δrho=+0.055 [-0.128,+0.199]  -> inconclusive
+  CORE_joint   vs best single (sig_nvis_mvg): Δrho=+0.075 [-0.142,+0.214]  -> inconclusive
+  FULL_joint   vs best single (sig_nvis_mvg): Δrho=+0.132 [-0.065,+0.250]  -> inconclusive
 
 LEAVE-ONE-CATCHMENT-OUT transfer (predict a held-out landscape), E-UNIT Spearman:
   held-out    CORE_joint  NVIS-only  conv-only
-  Roper           +0.161     +0.242     +0.236
-  Larrimah        +0.137     +0.064     +0.177
-  Wadeye          +0.536     +0.511        n/a
-  GunnPoint       +0.281     +0.216     +0.197
-  DeepWell        +0.239     +0.000     +0.120
-  MEAN            +0.271     +0.207     +0.182
+  Roper           +0.168     +0.218     -0.079
+  Larrimah        +0.307     +0.064     +0.179
+  Wadeye          +0.519     +0.512        n/a
+  GunnPoint       +0.244     +0.217     -0.196
+  DeepWell        +0.000     +0.000        n/a
+  MEAN            +0.248     +0.202     -0.032

@@ -1,0 +1,63 @@
+catchment,fact,value,description
+all,mangrove_rarity,0.477,"NT-wide rarity of NVIS MVG 23 (Mangroves), 3 d.p."
+Roper,n_polygons,3079.0,polygons with a valid class
+Roper,n_lt_1m2,24.0,polygons smaller than 1 m2
+Roper,pct_class1,1.4,% of polygons in class 1
+Roper,pct_class3,14.2,% of polygons in class 3
+Roper,pct_class4,82.1,% of polygons in class 4
+Roper,pct_class5,2.3,% of polygons in class 5
+Roper,mangrove_n,0.0,polygons attributed to mangroves (rarity rounded to 3 d.p.)
+Roper,mangrove_n_class4,0.0,of which class 4
+Roper,mangrove_n_class_ge4,0.0,of which class 4 or 5
+Roper,pct_class1_conv_le_0.4,73.8,% of class 1 polygons with convertibility <= 0.4 (non-missing)
+Roper,pct_class4_conv_missing,31.5,% of class 4 polygons with convertibility missing (water)
+Larrimah,n_polygons,19.0,polygons with a valid class
+Larrimah,n_lt_1m2,0.0,polygons smaller than 1 m2
+Larrimah,pct_class3,10.5,% of polygons in class 3
+Larrimah,pct_class4,89.5,% of polygons in class 4
+Larrimah,mangrove_n,0.0,polygons attributed to mangroves (rarity rounded to 3 d.p.)
+Larrimah,mangrove_n_class4,0.0,of which class 4
+Larrimah,mangrove_n_class_ge4,0.0,of which class 4 or 5
+Larrimah,pct_class4_conv_missing,5.9,% of class 4 polygons with convertibility missing (water)
+Wadeye,n_polygons,412.0,polygons with a valid class
+Wadeye,n_lt_1m2,0.0,polygons smaller than 1 m2
+Wadeye,pct_class2,18.4,% of polygons in class 2
+Wadeye,pct_class4,8.7,% of polygons in class 4
+Wadeye,pct_class5,72.8,% of polygons in class 5
+Wadeye,mangrove_n,7.0,polygons attributed to mangroves (rarity rounded to 3 d.p.)
+Wadeye,mangrove_n_class4,0.0,of which class 4
+Wadeye,mangrove_n_class_ge4,7.0,of which class 4 or 5
+Wadeye,pct_class4_conv_missing,13.9,% of class 4 polygons with convertibility missing (water)
+GunnPoint,n_polygons,23315.0,polygons with a valid class
+GunnPoint,n_lt_1m2,178.0,polygons smaller than 1 m2
+GunnPoint,pct_class1,2.2,% of polygons in class 1
+GunnPoint,pct_class2,0.0,% of polygons in class 2
+GunnPoint,pct_class3,35.0,% of polygons in class 3
+GunnPoint,pct_class4,42.2,% of polygons in class 4
+GunnPoint,pct_class5,20.6,% of polygons in class 5
+GunnPoint,mangrove_n,1668.0,polygons attributed to mangroves (rarity rounded to 3 d.p.)
+GunnPoint,mangrove_n_class4,1665.0,of which class 4
+GunnPoint,mangrove_n_class_ge4,1667.0,of which class 4 or 5
+GunnPoint,pct_class1_conv_le_0.4,95.6,% of class 1 polygons with convertibility <= 0.4 (non-missing)
+GunnPoint,pct_class4_conv_missing,34.7,% of class 4 polygons with convertibility missing (water)
+DeepWell,n_polygons,6.0,polygons with a valid class
+DeepWell,n_lt_1m2,0.0,polygons smaller than 1 m2
+DeepWell,pct_class2,33.3,% of polygons in class 2
+DeepWell,pct_class3,33.3,% of polygons in class 3
+DeepWell,pct_class4,33.3,% of polygons in class 4
+DeepWell,mangrove_n,0.0,polygons attributed to mangroves (rarity rounded to 3 d.p.)
+DeepWell,mangrove_n_class4,0.0,of which class 4
+DeepWell,mangrove_n_class_ge4,0.0,of which class 4 or 5
+DeepWell,pct_class4_conv_missing,0.0,% of class 4 polygons with convertibility missing (water)
+Weddell,n_polygons,20481.0,polygons with a valid class
+Weddell,n_lt_1m2,200.0,polygons smaller than 1 m2
+Weddell,pct_class1,6.1,% of polygons in class 1
+Weddell,pct_class2,10.6,% of polygons in class 2
+Weddell,pct_class3,53.0,% of polygons in class 3
+Weddell,pct_class4,26.3,% of polygons in class 4
+Weddell,pct_class5,3.9,% of polygons in class 5
+Weddell,mangrove_n,1537.0,polygons attributed to mangroves (rarity rounded to 3 d.p.)
+Weddell,mangrove_n_class4,1492.0,of which class 4
+Weddell,mangrove_n_class_ge4,1502.0,of which class 4 or 5
+Weddell,pct_class1_conv_le_0.4,95.2,% of class 1 polygons with convertibility <= 0.4 (non-missing)
+Weddell,pct_class4_conv_missing,37.7,% of class 4 polygons with convertibility missing (water)

@@ -44,7 +44,9 @@ Per catchment, using the committed data:
 │   ├── p3_joint.py         Pre-specified joint model (superseded by p4 R2)
 │   ├── p4_revision.py      Current analysis: HKSJ meta-analysis, paired comparisons, screening
 │   │                       metrics, mechanism analyses, multiverse / specification curve
+│   ├── manuscript_facts.py Descriptive counts quoted in the manuscript (no statistics)
 │   ├── make_tables.py      Every manuscript and SI table, from analysis outputs
+│   ├── check_numbers.py    Pre-submission check of numbers, placeholders, word limits, anonymity
 │   ├── make_figures.py     Figures 1–5, from analysis outputs
 │   └── p1_sanity.py        Early exploratory check (not used in the paper)
 ├── analysis_p3/            Outputs of the pre-specified analysis
@@ -69,7 +71,8 @@ python scripts/export_centroids.py   # -> data/processed/polygon_centroids.parqu
 python scripts/p3_confirmatory.py
 python scripts/p3_blockboot.py
 python scripts/p3_joint.py
-python scripts/p4_revision.py        # 1-3 hours; seeds fixed
+python scripts/p4_revision.py        # about 5 minutes on a recent laptop; seeds fixed
+python scripts/manuscript_facts.py   # descriptive counts quoted in the text
 python scripts/make_tables.py        # -> paper/tables/
 python scripts/make_figures.py       # -> paper/figures/ (Figure 1 also needs the raw geometries)
 ```

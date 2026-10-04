@@ -1,0 +1,23 @@
+catchment,drop,n_dropped,rho
+Roper,none,0,0.21798396562194522
+Roper,rarity=0.319 (share BIORISK>=4: 0.90),206,0.2066068495851256
+Roper,rarity=0.420 (share BIORISK>=4: 0.96),70,0.2142448972308904
+Roper,all rarity>=0.25,928,0.12692818402321407
+Larrimah,none,0,0.06363525646449965
+Larrimah,all rarity>=0.25,2,0.0
+Wadeye,none,0,0.5120271270908017
+Wadeye,rarity=0.262 (share BIORISK>=4: 0.99),77,0.5204537949021332
+Wadeye,rarity=0.477 (share BIORISK>=4: 1.00),7,0.5089505986540902
+Wadeye,all rarity>=0.25,189,0.5823571408135426
+GunnPoint,none,0,0.2166314763533889
+GunnPoint,rarity=0.477 (share BIORISK>=4: 1.00),1668,0.1994138875503617
+GunnPoint,rarity=0.383 (share BIORISK>=4: 0.74),1454,0.21864628903571556
+GunnPoint,rarity=0.517 (share BIORISK>=4: 0.94),1181,0.17949283390140056
+GunnPoint,rarity=0.319 (share BIORISK>=4: 0.85),650,0.20571784654327638
+GunnPoint,rarity=0.262 (share BIORISK>=4: 1.00),284,0.21385125151028306
+GunnPoint,all rarity>=0.25,7421,-0.04266144438406506
+DeepWell,none,0,0.0
+DeepWell,all rarity>=0.25,0,0.0
+Weddell,none,0,0.23323283723490984
+Weddell,rarity=0.477 (share BIORISK>=4: 0.98),1537,0.06760693830830017
+Weddell,all rarity>=0.25,2828,-0.034293829691217366

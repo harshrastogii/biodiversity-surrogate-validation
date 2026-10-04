@@ -1,7 +1,7 @@
 V2 HARMONIZATION BUILD (pure data; no statistics)
 CRS=3577  resolutions=[1000, 2000, 5000, 10000]  + polygon anchor
 
-Roper      res=polygon  units= 6342  cov>=50%= 6342  bio[1.00,5.00]  sig_landsys NaN=0  conv NaN=1769
+Roper      res=polygon  units= 3079  cov>=50%= 3079  bio[1.00,5.00]  sig_landsys NaN=0  conv NaN=826
 Roper      res=1000     units=17573  cov>=50%=17262  bio[1.01,5.00]  sig_landsys NaN=0  conv NaN=670
 Roper      res=2000     units= 4495  cov>=50%= 4291  bio[1.57,5.00]  sig_landsys NaN=0  conv NaN=62
 Roper      res=5000     units=  753  cov>=50%=  692  bio[2.49,5.00]  sig_landsys NaN=0  conv NaN=0
@@ -32,4 +32,4 @@ Weddell    res=2000     units=  143  cov>=50%=   94  bio[1.00,4.41]  sig_landsys
 Weddell    res=5000     units=   29  cov>=50%=   15  bio[1.24,3.58]  sig_landsys NaN=0  conv NaN=0
 Weddell    res=10000    units=   13  cov>=50%=    3  bio[2.23,3.44]  sig_landsys NaN=0  conv NaN=0
 
-grid rows=25962  polygon rows=50575  elapsed=537s
+grid rows=25962  polygon rows=47312  elapsed=452s

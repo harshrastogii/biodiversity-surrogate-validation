@@ -473,3 +473,16 @@ Decisions taken during the final run, one line of reasoning each. Data checks ar
 - **CAPAD citation** corrected from 2022 to 2024, the release actually in the analysis (metadata
   and gazettal dates); data unchanged.
 - **Land-systems reference year** set to 2013, the NTLIS citation (creation) date.
+- **Added `scripts/manuscript_facts.py`** (run after `p4_revision.py`), because several descriptive
+  counts in the text (sub-m² polygons, class shares, mangrove polygons by class, convertibility for
+  class 1 and water) were not written by any script; every manuscript number must trace to an output.
+- **Figure 2 now plots the Table 2 estimates** (`meta_hksj.csv`, B = 2,000, and AUCs pooled with
+  `meta_auc`), because it had plotted the multiverse estimates (B = 500), which differ for
+  high-heterogeneity quantities (NVIS area-weighted ρ 0.188 vs 0.245); one number per quantity.
+- **Greater Weddell class-1 exclusion added to `p4_revision.py`** (`modification_weddell.csv`), run with
+  its own random generator after all other analyses, because the text and Figure 4d need it; the rerun
+  reproduced `report.txt` byte for byte.
+- **Figure fixes**: Figure 1 labels moved off polygons and coastlines; Figure 2 intervals beyond the
+  axis marked with arrowheads; Figure 3 summary moved above the panel; Figure 4a legend moved off the
+  1 ha line; Figure 4d shows the three areas that contain class 1 (Larrimah has none) on an axis that
+  includes negative values; Figure 5b tick labels rotated.

@@ -2,7 +2,7 @@ P3 HARDENED — spatial BLOCK BOOTSTRAP inference (10 km tiles; 5/20 km sensitiv
 B=2000, seed=42. Tiles resampled with replacement (contiguous neighbourhoods).
 
 n_tiles per catchment (E-UNIT, sig_nvis_mvg) — the true replication scale:
-  Roper      n_tiles(10km)=179
+  Roper      n_tiles(10km)=168
   Larrimah   n_tiles(10km)=9
   Wadeye     n_tiles(10km)=6
   GunnPoint  n_tiles(10km)=15
@@ -10,24 +10,24 @@ n_tiles per catchment (E-UNIT, sig_nvis_mvg) — the true replication scale:
 
 HARDENED META (block-bootstrap CIs), 10 km tiles:
   surrogate        estimand     rho             95% CI       p   I2 k
-  sig_landsys      E-UNIT    +0.085 [-0.003,+0.172]  0.0582    0 4
-  sig_landsys      E-AREA    +0.280 [+0.161,+0.390]  0.0000    0 4
-  sig_nvis_mvg     E-UNIT    +0.244 [+0.149,+0.334]  0.0000   18 4
-  sig_nvis_mvg     E-AREA    +0.348 [-0.290,+0.772]  0.2818   91 4
-  cond_dea         E-UNIT    +0.141 [-0.098,+0.364]  0.2464   83 4
-  cond_dea         E-AREA    -0.044 [-0.166,+0.079]  0.4795    0 4
-  convertibility   E-UNIT    +0.178 [+0.063,+0.288]  0.0026    0 4
-  convertibility   E-AREA    +0.174 [+0.041,+0.301]  0.0104    0 4
-  protection       E-UNIT    -0.015 [-0.073,+0.043]  0.6149    0 2
-  protection       E-AREA    -0.228 [-0.489,+0.070]  0.1318   14 2
+  sig_landsys      E-UNIT    +0.091 [+0.030,+0.151]  0.0035    0 4
+  sig_landsys      E-AREA    +0.304 [+0.170,+0.427]  0.0000    0 4
+  sig_nvis_mvg     E-UNIT    +0.230 [+0.149,+0.307]  0.0000   16 4
+  sig_nvis_mvg     E-AREA    +0.366 [-0.240,+0.767]  0.2311   89 4
+  cond_dea         E-UNIT    +0.091 [-0.073,+0.250]  0.2763   81 4
+  cond_dea         E-AREA    -0.039 [-0.175,+0.098]  0.5765    0 4
+  convertibility   E-UNIT    +0.046 [-0.180,+0.268]  0.6907   63 3
+  convertibility   E-AREA    +0.033 [-0.200,+0.263]  0.7833    0 3
+  protection       E-UNIT    -0.016 [-0.051,+0.018]  0.3545    0 2
+  protection       E-AREA    -0.269 [-0.500,-0.002]  0.0486    0 2
 
 TILE-SIZE SENSITIVITY (E-UNIT pooled rho [CI]):  5km | 10km | 20km
-  sig_landsys      +0.084[+0.00,+0.17] | +0.085[-0.00,+0.17] | +0.071[-0.03,+0.17]
-  sig_nvis_mvg     +0.270[+0.14,+0.39] | +0.244[+0.15,+0.33] | +0.259[+0.15,+0.36]
-  cond_dea         +0.139[-0.10,+0.36] | +0.141[-0.10,+0.36] | +0.144[-0.11,+0.38]
-  convertibility   +0.170[+0.08,+0.26] | +0.178[+0.06,+0.29] | +0.186[+0.05,+0.32]
-  protection       -0.015[-0.07,+0.04] | -0.015[-0.07,+0.04] | -0.015[-0.08,+0.05]
+  sig_landsys      +0.090[+0.04,+0.14] | +0.091[+0.03,+0.15] | +0.088[+0.02,+0.16]
+  sig_nvis_mvg     +0.259[+0.14,+0.37] | +0.230[+0.15,+0.31] | +0.247[+0.13,+0.36]
+  cond_dea         +0.089[-0.08,+0.25] | +0.091[-0.07,+0.25] | +0.097[-0.05,+0.24]
+  convertibility   +0.063[-0.17,+0.29] | +0.046[-0.18,+0.27] | +0.001[-0.18,+0.18]
+  protection       -0.016[-0.05,+0.02] | -0.016[-0.05,+0.02] | -0.016[-0.05,+0.02]
 
 NVIS CIRCULARITY PARTIAL (block-bootstrap, 10 km): per-catchment + pooled
-  Roper=0.181  Larrimah=0.051  Wadeye=0.451  GunnPoint=0.124  DeepWell=nan
-  POOLED partial NVIS|(LS,conv): rho=+0.200 [+0.079,+0.314] p=0.0013 k=3
+  Roper=0.138  Larrimah=0.053  Wadeye=0.45  GunnPoint=0.136  DeepWell=nan
+  POOLED partial NVIS|(LS,conv): rho=+0.170 [+0.075,+0.261] p=0.0005 k=4
