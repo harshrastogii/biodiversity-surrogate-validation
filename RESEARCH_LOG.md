@@ -454,3 +454,22 @@ Option C adding global TNFD-type screening layers under a genuine OSF pre-regist
   (a V1 intersection product), and 2,263 of its 6,342 polygons are < 1 m². Rebuild Roper from the
   original NT dataset before the final run.
 - Per-catchment estimates are final; pooled values need the real centroids (`export_centroids.py`).
+
+---
+
+## P5 — final run (2026-10-04)
+
+Decisions taken during the final run, one line of reasoning each. Data checks are in
+`data/meta/P4_DATA_CHECKS.md`.
+
+- **Roper source.** Replaced the V1 intersection product with the original NT layer
+  (`Roper_biodiversity_risks`, 3,079 polygons), because the intersection had cut expert polygons along
+  land-use boundaries (the convertibility source), creating 2,264 sub-m² fragments.
+- **BIORISK wording differs between datasets** (Gunn Point class 3 = "uncertain", narrower classes
+  4–5). Kept the pooled design, because every metric is computed within a catchment before pooling;
+  the difference is disclosed in Methods, Limitations and Appendix S3.
+- **Shared inputs.** The Roper assessors used NT land-system and land-use mapping; disclosed rather
+  than corrected, because no polygon-level record says which input set each class.
+- **CAPAD citation** corrected from 2022 to 2024, the release actually in the analysis (metadata
+  and gazettal dates); data unchanged.
+- **Land-systems reference year** set to 2013, the NTLIS citation (creation) date.

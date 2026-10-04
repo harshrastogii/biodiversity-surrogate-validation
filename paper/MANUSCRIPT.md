@@ -78,7 +78,8 @@ these methods to biodiversity surrogate validation.
 
 Northern Australia offers an unusual test bed. The Northern Territory Government's *Mapping the
 Future* program has mapped expert biodiversity-risk classes, informed by field vegetation and fauna
-survey, for several areas proposed for development, and five of these use the same five-level scale.
+survey, for several areas proposed for development, and five of these use the same five-level scale
+with small differences in class wording.
 The resulting polygons give an independent, field-informed benchmark of a kind rarely available in
 the places where surrogates are used. Here we use six of these assessments to ask three questions.
 (1) Which open-data surrogate agrees best with the expert classes? (2) Does that answer survive
@@ -95,9 +96,17 @@ The benchmarks are biodiversity assessments made under the *Mapping the Future* 
 Northern Territory areas (Figure 1; Table 1): the central Roper River catchment, Larrimah, Wadeye,
 Gunn Point, the NTP 3910 Deep Well area and the Greater Weddell subregion (Northern Territory
 Government, 2020, 2021a, 2021b, 2021c, 2024b, 2025). For brevity we call them catchments. Five use
-the ordinal biodiversity-risk class BIORISK: 1, nil or highly modified; 2, low; 3, mitigable;
-4, moderate; 5, high {{CHECK: confirm class wording and identical definitions from each dataset's
-metadata}}. Experts assigned a class to each mapped polygon. Greater Weddell uses a separate
+the ordinal biodiversity-risk class BIORISK, coded in the same order in each dataset: 1, nil (highly
+modified land); 2, low (no significant biodiversity value); 3, mitigable (land that may provide
+habitat for broadly occurring threatened species, where retaining part of it may be required);
+4, moderate (sensitive or significant vegetation under the NT Land Clearing Guidelines, or species of
+conservation interest); 5, high (significant vegetation communities or threatened-species habitat).
+The wording differs between datasets (Appendix S3). At Gunn Point, class 3 means "uncertain: requires
+further biodiversity assessment", class 4 refers to vegetation types only, and class 5 requires
+significant vegetation in combination with threatened-species records (Northern Territory
+Government, 2020). Experts assigned a class to each mapped polygon from field survey and existing
+mapping. The Roper assessors drew part of their linework from NT land-system and land-use mapping
+(Northern Territory Government, 2024b), the sources of two of our surrogates. Greater Weddell uses a separate
 five-level biodiversity-values scale (highly modified, low, medium, high, very high); we analysed it
 the same way but never pooled it with the BIORISK catchments. Polygons coded 0 (not assessed) or 9
 (water) were excluded. The pooled BIORISK set has 30,094 polygons; Greater Weddell has 20,481.
@@ -113,18 +122,18 @@ Each polygon was attributed five surrogates, all reprojected to GDA94 / Australi
 
 - **Land-system rarity**: one minus the min–max rescaled log of the Territory-wide area of each land
   system (NT land systems, 1:250,000 north and 1:1,000,000 south; Northern Territory Government,
-  n.d.).
+  2013).
 - **Vegetation-type rarity**: the same transformation applied to the Territory-wide area of each
   native Major Vegetation Group in the National Vegetation Information System (NVIS) v7 extant
-  raster at 100 m (DCCEEW, 2024). Cleared, bare, sea and unknown codes were treated as missing.
+  raster at 100 m (DCCEEW, 2024b). Cleared, bare, sea and unknown codes were treated as missing.
 - **Vegetation cover**: 100 minus the median bare-soil fraction from Landsat Fractional Cover
   Percentiles at 30 m for 2020 (Lymburner, 2021).
 - **Convertibility**: a score assigned to each Australian Land Use and Management primary class in
   the Northern Territory Land Use Mapping (Northern Territory Government, 2024a): conservation and
   natural environments 0.1; production from relatively natural environments 1.0; dryland agriculture
   and plantations 0.4; irrigated agriculture 0.2; intensive uses 0.0; water missing.
-- **Protection**: the fraction of the polygon inside the Collaborative Australian Protected Areas
-  Database (DCCEEW, 2022) {{CHECK: confirm CAPAD release used}}.
+- **Protection**: the fraction of the polygon inside the terrestrial Collaborative Australian
+  Protected Areas Database 2024 (DCCEEW, 2024a).
 
 Land-system and vegetation-type rarity are the candidate biodiversity surrogates; vegetation cover is
 a condition surrogate; convertibility and protection are reference layers that planners often
@@ -296,10 +305,9 @@ or coarser and do not vary inside most sub-hectare polygons, so a per-polygon me
 against thousands of fragments they cannot resolve.
 
 **Rare vegetation groups.** The agreement of vegetation-type rarity came mostly from a few rare
-groups that the experts consistently placed in high-risk classes (Figure 4c; Table S2). One group,
-with a Territory-wide rarity of 0.477 and found mainly on tidal land {{CHECK: confirm the NVIS MVG
-code and name, likely mangroves}}, was class 4 in 1,665 of 1,668 Gunn Point polygons and in 1,492 of
-1,537 Greater Weddell polygons. Removing that group alone cut Greater Weddell's ρ from 0.233 to
+groups that the experts consistently placed in high-risk classes (Figure 4c; Table S2). Mangroves
+(NVIS Major Vegetation Group 23, Territory-wide rarity 0.477) were class 4 in 1,665 of 1,668 Gunn Point polygons and in 1,492 of
+1,537 Greater Weddell polygons. Removing mangroves alone cut Greater Weddell's ρ from 0.233 to
 0.068. Removing all groups with rarity ≥ 0.25 reversed the sign at Gunn Point (0.217 to −0.043) and
 in Greater Weddell (0.233 to −0.034) and lowered the Roper estimate (0.242 to 0.146). Wadeye was the
 exception (0.512 to 0.582), because there the commonest vegetation group was concentrated in class 2.
@@ -349,8 +357,9 @@ report the size distribution of benchmark units relative to the surrogate's reso
 al., 2002) and vary the minimum mapping unit as one of the analysis choices.
 
 Second, shared rules. Vegetation-type rarity agreed with the experts largely because a few rare
-vegetation groups, most clearly a tidal group found almost entirely in class 4, were ones the experts
-consistently rated as sensitive. The partial correlation we specified in advance did not detect this,
+vegetation groups, most clearly mangroves, were ones the experts consistently rated as sensitive.
+The Gunn Point class 4 rule names "mangroves and salt flats" among its qualifying communities
+(Northern Territory Government, 2020). The partial correlation we specified in advance did not detect this,
 because land-system rarity and convertibility are poor proxies for the experts' vegetation rules.
 For screening, a surrogate that reproduces expert rules is useful, because it flags the same places
 the experts would. As evidence that open data can stand in for field assessment, it is weaker than
@@ -394,7 +403,12 @@ about 20 blocks, as several do here.
 BIORISK classifies the risk that development poses to biodiversity, so it mixes value, sensitivity
 and existing condition, and expert judgements carry their own uncertainty and inconsistency
 (Burgman et al., 2011; Martin et al., 2012). We treat the benchmark as the assessment planners would
-otherwise commission, with its own errors. Greater Weddell uses a different scale and was analysed
+otherwise commission, with its own errors. The five BIORISK datasets share an order but not
+identical definitions: Gunn Point's class 3 means that further assessment is needed rather than that
+impacts can be mitigated, and its classes 4 and 5 use narrower rules. Within-catchment metrics are
+unaffected, but pooled estimates average over slightly different constructs. The Roper assessors also
+built their map partly from the land-system and land-use layers behind two of our surrogates, so
+some Roper agreement for those two layers comes from shared input. Greater Weddell uses a different scale and was analysed
 separately; it matched Gunn Point on the class 5 reversal, but its partial correlation for
 vegetation-type rarity was close to zero.
 
@@ -470,11 +484,11 @@ https://doi.org/10.1371/journal.pone.0022998
 Clifford, P., Richardson, S., & Hémon, D. (1989). Assessing the significance of the correlation
 between two spatial processes. *Biometrics*, *45*(1), 123–134. https://doi.org/10.2307/2532039
 
-DCCEEW (Department of Climate Change, Energy, the Environment and Water). (2022). *Collaborative
-Australian Protected Areas Database (CAPAD) 2022 – Terrestrial* [Data set]. Australian Government.
-https://www.dcceew.gov.au/environment/land/nrs/science/capad/2022
+DCCEEW (Department of Climate Change, Energy, the Environment and Water). (2024a). *Collaborative
+Australian Protected Areas Database (CAPAD) 2024 – Terrestrial* [Data set]. Australian Government.
+https://www.dcceew.gov.au/environment/land/nrs/science/capad/2024
 
-DCCEEW (Department of Climate Change, Energy, the Environment and Water). (2024). *National
+DCCEEW (Department of Climate Change, Energy, the Environment and Water). (2024b). *National
 Vegetation Information System (NVIS), Version 7.0* [Data set]. Australian Government.
 https://www.dcceew.gov.au/environment/environment-information-australia/national-vegetation-information-system
 
@@ -559,16 +573,14 @@ McGinley, B. (2025). Gaps in conservation planning in the Northern Territory of 
 for the energy transition. *Australasian Journal of Environmental Management*.
 https://doi.org/10.1080/14486563.2025.2575948 {{CHECK: co-authors, volume, pages}}
 
-Northern Territory Government. (n.d.). *Northern Territory land systems (compilation of north_250 and
+Northern Territory Government. (2013). *Northern Territory land systems (compilation of north_250 and
 south_1M)* [Data set]. https://data.nt.gov.au/dataset/northern-territory-land-systems-compilation-of-north-250-and-south-1m
-{{CHECK: replace n.d. with version year or access date}}
 
 Northern Territory Government. (2020). *Risk to biodiversity in the Gunn Point area, 2020* [Data set].
-https://data.nt.gov.au/dataset/risk-to-biodiversity-in-the-gunn-point-area-2020 {{CHECK: title and URL}}
+https://data.nt.gov.au/dataset/risk-to-biodiversity-in-the-gunn-point-area-2020
 
 Northern Territory Government. (2021a). *Biodiversity assessment study of NTP 3910 in the Deep Well
 area, 2021* [Data set]. https://data.nt.gov.au/dataset/biodiversity-assessment-of-ntp-3910-in-the-deep-well-area-2021
-{{CHECK: URL slug}}
 
 Northern Territory Government. (2021b). *Risk to biodiversity in the Wadeye area, 2021* [Data set].
 https://data.nt.gov.au/dataset/risk-to-biodiversity-in-the-wadeye-area-2021

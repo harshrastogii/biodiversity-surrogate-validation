@@ -20,3 +20,17 @@ treated as missing (25 cleared, 27 bare, 28 sea, 99 unknown); rounding rule (4 d
 deletion; polygons coded 0 (not assessed) or 9 (water) excluded.
 
 **Appendix S2. Departures from the pre-specified plan,** with dates, from `RESEARCH_LOG.md`.
+
+**Appendix S3. BIORISK class definitions by dataset,** from each dataset's attribute fields and
+class-description tables (`data/meta/P4_DATA_CHECKS.md`). All five use codes 1–5 in the same order,
+0 for not assessed and 9 for water.
+
+| Class | Roper (2024) | Larrimah (2021) | Wadeye (2021) | Gunn Point (2020) | Deep Well (2021) |
+|---|---|---|---|---|---|
+| 1 | Nil: highly modified | Nil: highly modified* | Nil: highly modified* | Nil: highly modified | not present |
+| 2 | not present | Low: no significant biodiversity value* | Low: no significant value | Low: no significant biodiversity value | Low: no significant biodiversity value |
+| 3 | Mitigable: apply the mitigation hierarchy | Mitigable: apply land management strategies | Mitigable* | Uncertain: requires further biodiversity assessment | Mitigable: apply land management strategies |
+| 4 | Moderate: sensitive or significant vegetation, including groundwater-dependent ecosystems, or species of conservation interest | Moderate: sensitive or significant vegetation, or species of conservation interest | Moderate: sensitive or significant vegetation, or species of conservation interest | Moderate: sensitive or significant vegetation types | Moderate: sensitive or significant vegetation, or species of conservation interest |
+| 5 | High: significant vegetation community and/or threatened-species habitat | High* | High: significant vegetation community and/or threatened-species habitat | High: significant vegetation community in combination with threatened-species records | not present |
+
+\* Defined in the dataset's class-description table but not present among its polygons.

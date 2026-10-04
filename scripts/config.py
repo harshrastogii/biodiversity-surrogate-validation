@@ -19,8 +19,10 @@ RESOLUTIONS_M = [1000, 2000, 5000, 10000]   # resolution ladder (metres); plus "
 # ---- expert benchmarks -----------------------------------------------------
 # scheme: 'biorisk' (ordinal 1..5, MTF) | 'biovalue' (Weddell BV_OVERALL, separate scale)
 BENCHMARKS = {
- "Roper":     dict(path=os.path.join(V1, "data", "roper_intersection.gpkg"),
-                   layer="roper_intersection", field="BIORISK", scheme="biorisk"),
+ # Original NT dataset (data.nt.gov.au, "Risk to biodiversity of the central Roper River catchment,
+ # 2024"). P5: replaces the V1 intersection product, which split expert polygons along land-use lines.
+ "Roper":     dict(path=os.path.join(RAW, "benchmarks/Roper/Datasets/ESRI/MTF_Roper.gdb"),
+                   layer="Roper_biodiversity_risks", field="BIORISK", scheme="biorisk"),
  "Larrimah":  dict(path=os.path.join(ROOT, "datasets/Larrimah/BioRisk_Larrimah/Datasets/ESRI/Larrimah_BioRisk.gdb"),
                    layer="Larrimah_Biodiversity_Risk", field="BIORISK", scheme="biorisk"),
  "Wadeye":    dict(path=os.path.join(ROOT, "datasets/Wadeye/BioRisk_Wadeye/Datasets/ESRI/Wadeye_Biodiversity.gdb"),
@@ -32,7 +34,7 @@ BENCHMARKS = {
  "Weddell":   dict(path=os.path.join(ROOT, "datasets/Greater_Weddell/BioValues_GreaterWeddell/Datasets/ESRI/Greater_Weddell_biodiversity_assessment.gdb"),
                    layer="Biodiversity_values", field="BV_OVERALL", scheme="biovalue"),
 }
-BIORISK_POOL = ["Roper", "Larrimah", "Wadeye", "GunnPoint", "DeepWell"]  # identical scale
+BIORISK_POOL = ["Roper", "Larrimah", "Wadeye", "GunnPoint", "DeepWell"]  # same 1-5 order; class wording differs (P4_DATA_CHECKS.md)
 BV_MAP = {"Highly modified area": 1, "Low": 2, "Medium": 3, "High": 4, "Very high": 5}
 
 # ---- surrogate sources -----------------------------------------------------

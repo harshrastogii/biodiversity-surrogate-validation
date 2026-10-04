@@ -6,7 +6,7 @@ Status as of acquisition run. All paths relative to `v2/` unless noted. Workflow
 
 | Catchment | On disk | Layer | Field | CRS | n polys | Hex coverage (10km) | Notes / limitation |
 |---|---|---|---|---|---|---|---|
-| Roper | `../nt_exposure/data/roper_intersection.gpkg` | roper_intersection | BIORISK | 3577 | 6343 | 244 hexes (196 ≥50%) | Large; primary V1 benchmark. |
+| Roper | `data/raw/benchmarks/Roper/Datasets/ESRI/MTF_Roper.gdb` (from data.nt.gov.au `risk-to-biodiversity-of-the-central-roper-river-catchment-2024`, BioRisk_CentralRoper.zip) | Roper_biodiversity_risks | BIORISK | 4283 | 3079 | Original NT layer, used from P5. The V1 intersection product (`../nt_exposure/data/roper_intersection.gpkg`, 6,343 polygons) is no longer used; see P4_DATA_CHECKS.md. |
 | Larrimah | `../datasets/Larrimah/.../Larrimah_BioRisk.gdb` | Larrimah_Biodiversity_Risk | BIORISK | 4283 | 19 | 18 hexes (4 ≥50%) | Small; arid. |
 | Wadeye | `../datasets/Wadeye/.../Wadeye_Biodiversity.gdb` | Wadeye_BiodiversityRisk | BIORISK | 4283 | 412 | 8 hexes (2 ≥50%) | Small; coastal. |
 | Weddell | `../datasets/Greater_Weddell/.../*.gdb` | Biodiversity_values | BV_OVERALL | 4283 | 20481 | 11 hexes (3 ≥50%) | **Different scheme** (BioValues) → crosswalk, keep separate. |
@@ -15,7 +15,7 @@ Status as of acquisition run. All paths relative to `v2/` unless noted. Workflow
 
 Benchmark verification outcome:
 - **Katherine** and **Western Davenport**: NO spatial biodiversity-risk polygon layer on data.nt.gov.au (report/GDE only) → **cannot be gridded as a benchmark; excluded** (documented, not a loss of usable data).
-- BIORISK scale is the identical NT "Mapping the Future" scheme across Roper/Larrimah/Wadeye/Gunn Point/Deep Well (1 Nil→5 High, 0 Not assessed, 9 Water). Confirm Gunn Point/Deep Well class-description tables at P1.
+- BIORISK uses the same 1–5 order and the codes 0 (not assessed) and 9 (water) in all five datasets, but the class wording is not identical (Gunn Point class 3 is "Uncertain", not "Mitigable"). Details in P4_DATA_CHECKS.md.
 - All benchmarks come from the same MTF program → methodologically non-independent across catchments (handle with catchment random effects, not by pretending independence).
 
 ## Surrogate layers (predictors)
