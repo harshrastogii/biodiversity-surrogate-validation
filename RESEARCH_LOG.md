@@ -468,8 +468,9 @@ Decisions taken during the final run, one line of reasoning each. Data checks ar
 - **BIORISK wording differs between datasets** (Gunn Point class 3 = "uncertain", narrower classes
   4–5). Kept the pooled design, because every metric is computed within a catchment before pooling;
   the difference is disclosed in Methods, Limitations and Appendix S3.
-- **Shared inputs.** The Roper assessors used NT land-system and land-use mapping; disclosed rather
-  than corrected, because no polygon-level record says which input set each class.
+- **Shared inputs.** The Roper assessors used the same NT land-use map as the convertibility surrogate
+  and a regional land-system survey; disclosed rather than corrected, because no polygon-level record
+  says which input set each class.
 - **CAPAD citation** corrected from 2022 to 2024, the release actually in the analysis (metadata
   and gazettal dates); data unchanged.
 - **Land-systems reference year** set to 2013, the NTLIS citation (creation) date.
@@ -486,3 +487,22 @@ Decisions taken during the final run, one line of reasoning each. Data checks ar
   axis marked with arrowheads; Figure 3 summary moved above the panel; Figure 4a legend moved off the
   1 ha line; Figure 4d shows the three areas that contain class 1 (Larrimah has none) on an axis that
   includes negative values; Figure 5b tick labels rotated.
+- **Two draft claims withdrawn as false on the final data**: Deep Well vegetation cover is not constant
+  after rounding (the constant layers are convertibility at Wadeye and Deep Well and protection at
+  Larrimah, Wadeye and Deep Well); Wadeye's commonest vegetation group is not concentrated in class 2
+  (76 of its 77 polygons are class 5), so the explanation was removed and only the measured change kept.
+- **Plan timing worded to what the record shows**: the research log was first committed together with
+  the confirmatory results (14 July 2026), so the manuscript no longer implies that version control
+  dates the plan before the results.
+- **Pooled values in the text** are given to two decimals with modified-HKSJ intervals, formatted by
+  script from `meta_hksj.csv`, `joint_paired.csv` and `screening.csv`; per-catchment values keep three.
+- **The joint model is not described as helping**: its within-catchment paired gain over NVIS,
+  0.08 [−0.09, 0.23], includes zero. The pooled-across-catchments gain is reported but not used for the
+  verdict, as Section 2.7 specifies.
+- **References** checked against Crossref (and DataCite for the DEA DOI): Harwood et al. 2016 title
+  corrected; McGinley et al. (2026) co-authors, volume and pages added; Hess et al. 2006 and Warman et
+  al. 2004 DOIs added; Gould et al. 2025 given the APA 7 author list (19 + last); the DEA product cited
+  as Geoscience Australia (2025), Version 4.0.0, the version of the 2020 tile used (DEA STAC
+  `odc:dataset_version`).
+- **`scripts/check_numbers.py` added** and run until clean (numbers, placeholders, word limits,
+  anonymity, citation–reference match).

@@ -130,8 +130,10 @@ and threatened-species fields).
   habitat models for *Cycas armstrongii*, *Stylidium ensatum* and critical-weight-range mammals,
   stands of large hollow trees, *Typhonium praetermissum* priority areas.
 
-The Roper benchmark therefore shares sources with two surrogates (land systems and land-use
-mapping). The Methods and Limitations state this.
+The Roper benchmark therefore shares a source with the convertibility surrogate (the same NT
+land-use map) and draws on a regional land-system survey that is related to, but not necessarily
+identical with, the Territory-wide land-system compilation used for land-system rarity. The Methods
+and Limitations state this.
 
 ## 4. Dataset references
 
@@ -164,3 +166,11 @@ value attribute table (`VAT_NVIS7_0_AUST_EXT_MVG_ALB`, field `MVG_NAME`), read w
 Rarities of the rarest groups, for reference: MVG 14 Mallee Woodlands and Shrublands 1.000; MVG 32
 Mallee Open Woodlands and Sparse Mallee Shrublands 0.785; MVG 1 Rainforests and Vine Thickets 0.517;
 MVG 8 Casuarina Forests and Woodlands 0.511; MVG 23 Mangroves 0.477; MVG 24 Inland aquatic 0.437.
+
+## 6. Effect of the Roper source on convertibility
+
+Per-polygon Spearman ρ of convertibility with BIORISK in the Roper: 0.240 with the intersection
+product (`analysis_p3/per_catchment.csv` at commit b93ca19, the last run on that layer) and −0.079 with
+the original NT layer (`analysis_p4/per_catchment_z.csv`, P5 run). The positive value came from
+polygons cut along land-use boundaries, which made the units partly a product of the convertibility
+source.

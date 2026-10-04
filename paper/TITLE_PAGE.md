@@ -14,7 +14,7 @@
 
 **Article type:** Research Article
 
-**Word counts:** Abstract [fill after final edit]; main text, Introduction to Acknowledgements [fill]; references [fill]. Figures: 5. Tables: 3.
+**Word counts:** Abstract 299; main text, Introduction to the end of the Discussion, 4,429; references 1,510. Figures: 5. Tables: 3.
 
 ## Acknowledgements
 
