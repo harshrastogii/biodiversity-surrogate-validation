@@ -506,3 +506,6 @@ Decisions taken during the final run, one line of reasoning each. Data checks ar
   `odc:dataset_version`).
 - **`scripts/check_numbers.py` added** and run until clean (numbers, placeholders, word limits,
   anonymity, citation–reference match).
+- **2026-11-19: cited Mollick et al. (2026)** in Section 4.3 as an example of a finer, purpose-built
+  wetland layer (Daly River; Sentinel-1/2 with Indigenous rangers' knowledge), because wetland and
+  mangrove groups drove the vegetation-type result. No analysis or reported number changed.

@@ -22,3 +22,6 @@ __pycache__/
 
 # Local Python environment
 .venv/
+
+# macOS metadata files created on non-Mac drives (the T7 is exFAT)
+._*

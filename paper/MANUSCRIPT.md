@@ -422,7 +422,11 @@ vegetation-type rarity was close to zero.
 The surrogates are coarse versions of what is available. NVIS Major Vegetation Groups are broad, the
 vegetation-cover layer is one year, and a multi-year condition product such as the Habitat Condition
 Assessment System (Harwood et al., 2016) may perform differently. Finer vegetation subgroups would
-likely strengthen the vegetation signal and the circularity problem together. The multiverse covers
+likely strengthen the vegetation signal and the circularity problem together. Purpose-built wetland
+maps are one such layer: in the Daly River catchment, combining Sentinel-1 radar, Sentinel-2 optical
+imagery and Indigenous rangers' knowledge raised overall classification accuracy from 89% to 98%
+(Mollick et al., 2026). Wetlands and mangroves carried much of the vegetation-type agreement here, so
+maps of this kind are the next surrogates to test against expert benchmarks. The multiverse covers
 the analysis choices we judged most consequential, not every possible one, and was added after the
 pre-specified analysis.
 
@@ -617,6 +621,11 @@ https://doi.org/10.1111/j.1523-1739.2011.01806.x
 McGinley, B., Edwards, A., & Garnett, S. T. (2026). Gaps in conservation planning in the Northern
 Territory of Australia: Preparing for the energy transition. *Australasian Journal of Environmental
 Management*, *33*(1), 30–47. https://doi.org/10.1080/14486563.2025.2575948
+
+Mollick, P., de Mello, K., Irvine, D. J., Malak Malak Rangers, Garcia, E. A., Rodrigues dos Santos
+Junior, E., & Crabbe, R. A. (2026). Integrating indigenous knowledge, multi-sensor remote sensing, and
+machine learning for mapping wetlands in northern Australia. *Remote Sensing Applications: Society and
+Environment*, *44*, Article 102351. https://doi.org/10.1016/j.rsase.2026.102351
 
 Northern Territory Government. (2013). *Northern Territory land systems (compilation of north_250 and
 south_1M)* [Data set]. https://data.nt.gov.au/dataset/northern-territory-land-systems-compilation-of-north-250-and-south-1m
